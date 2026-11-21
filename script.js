@@ -1,44 +1,41 @@
-// Interactions natives : aucun framework ni dépendance.
+// Étape 01 : navigation flottante et menu mobile (JavaScript natif)
 document.addEventListener('DOMContentLoaded', () => {
-  const menuButton = document.querySelector('.menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  const setMenu = (open) => {
-    menuButton?.setAttribute('aria-expanded', String(open));
-    menuButton?.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
-    if (menuButton) menuButton.querySelector('.menu-icon').textContent = open ? '✕' : '☰';
-    navLinks?.classList.toggle('open', open);
+  const header = document.getElementById('site-header');
+  const menuButton = document.querySelector('.navbar__toggle');
+  const menu = document.getElementById('nav-links');
+
+  // Au scroll : marges latérales, arrondis et fond glass.
+  let scrolling = false;
+  const refreshHeader = () => {
+    header.classList.toggle('is-scrolled', window.scrollY > 36);
+    scrolling = false;
   };
-  menuButton?.addEventListener('click', () => setMenu(menuButton.getAttribute('aria-expanded') !== 'true'));
-  navLinks?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
-  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') setMenu(false); });
+  window.addEventListener('scroll', () => {
+    if (!scrolling) {
+      window.requestAnimationFrame(refreshHeader);
+      scrolling = true;
+    }
+  }, { passive: true });
+  refreshHeader();
 
-  const filterButtons = document.querySelectorAll('[data-filter]');
-  const cards = document.querySelectorAll('.project-card[data-category]');
-  filterButtons.forEach(button => button.addEventListener('click', () => {
-    const selected = button.dataset.filter;
-    filterButtons.forEach(item => {
-      const active = item === button;
-      item.classList.toggle('active', active);
-      item.setAttribute('aria-pressed', String(active));
-    });
-    cards.forEach(card => { card.hidden = selected !== 'all' && card.dataset.category !== selected; });
-  }));
-
-  const revealElements = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    revealElements.forEach(element => observer.observe(element));
-  } else {
-    revealElements.forEach(element => element.classList.add('visible'));
+  function closeMenu() {
+    menu.classList.remove('is-open');
+    menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.setAttribute('aria-label', 'Ouvrir le menu');
   }
 
-  const year = document.getElementById('current-year');
-  if (year) year.textContent = new Date().getFullYear();
+  menuButton.addEventListener('click', () => {
+    const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+    menu.classList.toggle('is-open', !expanded);
+    menuButton.setAttribute('aria-expanded', String(!expanded));
+    menuButton.setAttribute('aria-label', expanded ? 'Ouvrir le menu' : 'Fermer le menu');
+  });
+
+  menu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeMenu();
+  });
+  document.addEventListener('click', event => {
+    if (!header.contains(event.target)) closeMenu();
+  });
 });
