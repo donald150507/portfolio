@@ -170,3 +170,9 @@ a:focus-visible, button:focus-visible { outline: 3px solid #348b55; outline-offs
   *, *::before, *::after { transition-duration: .01ms !important; }
   .announcement__track { animation-duration: 65s; }
 }
+
+/* Fidélité à la maquette : aucun logo dans la navigation et liens centrés */
+.navbar { justify-content: center; }
+.navbar__links { justify-content: center; gap: clamp(18px, 2.4vw, 38px); }
+@media (max-width: 1050px) { .navbar__links { gap: clamp(10px, 1.5vw, 22px); } }
+@media (max-width: 800px) { .navbar { justify-content: flex-end; } }
