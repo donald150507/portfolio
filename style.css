@@ -370,33 +370,31 @@ a:focus-visible, button:focus-visible { outline: 3px solid #348b55; outline-offs
 .cv-dropdown__option[aria-disabled="true"] { color: #55755d; cursor: not-allowed; }
 .cv-dropdown__option small { color: #8b9a90; font-weight: 400; font-size: 11px; }
 
-/* Trois miniatures vectorielles nettes, ~100 px */
-.home__miniatures { display:flex; align-items:center; justify-content:center; gap:19px; margin-top:44px; flex-wrap:wrap; }
-.mini-card {
-  width: 106px;
-  height: 106px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:3px;
-  border:1px solid rgba(18,85,34,.12);
-  border-radius:18px;
-  background:rgba(255,255,255,.68);
-  box-shadow:0 8px 28px rgba(16,74,31,.06);
-  -webkit-backdrop-filter:blur(9px);
-  backdrop-filter:blur(9px);
-  transition:transform .24s ease,box-shadow .24s ease;
-}
-.mini-card:hover { transform:translateY(-5px) rotate(-2deg); box-shadow:0 16px 30px rgba(16,74,31,.12); }
-.mini-card svg { width:70px; height:70px; }
-.mini-card span { font-family:"Inter",sans-serif; font-size:11px; font-weight:650; color:#195029; }
 @media(max-width:680px) {
  .home h1 { font-size:clamp(30px,8vw,41px); }
  .home__quote { font-size:14px; }
- .home__miniatures { gap:11px; margin-top:37px; }
- .mini-card { width:96px; height:100px; }
- .mini-card svg { width:62px; height:62px; }
  .cv-dropdown__menu { left:auto; right:0; }
 }
-@media(prefers-reduced-motion:reduce) { .mini-card,.cv-chevron,.cv-dropdown__menu { transition:none; } }
+@media(prefers-reduced-motion:reduce) { .cv-chevron,.cv-dropdown__menu { transition:none; } }
+
+/* Maquette Penpot : Anta (titres, boutons, navigation), Poppins (citation) */
+:root { font-family: "Poppins", sans-serif; }
+.home h1,.home h2,.home__button,.home__socials a,.home__social-pending,
+.navbar__links a,.announcement__item {
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  letter-spacing: .04em;
+}
+.home h1 { font-size: clamp(30px, 3.3vw, 40px); letter-spacing: .04em; }
+.home h2 { font-size: clamp(18px, 2vw, 24px); letter-spacing: .04em; }
+.home__quote { font-family: "Poppins", sans-serif; font-size: 14px; font-weight: 500; font-style: italic; letter-spacing: .025em; }
+.home__button { border-radius: 0; font-size: 16px; }
+.cv-dropdown__menu,.cv-dropdown__option { border-radius: 0; }
+.cv-dropdown__option { font-family: "Poppins", sans-serif; }
+.navbar__links a { font-size: 15px; }
+@media (max-width: 1190px) and (min-width: 801px) {
+  .navbar__links a { font-size: clamp(11px, 1.15vw, 14px); }
+}
+@media (max-width: 800px) {
+  .navbar__links a { font-size: 15px; }
+}
