@@ -60,4 +60,72 @@ document.addEventListener('DOMContentLoaded', () => {
     if (event.key === 'Escape') setCvOpen(false);
   });
 
+
+  // Accueil : animations GSAP, avec affichage statique si la bibliothèque ne charge pas.
+  const home = document.querySelector('.home');
+  const hasGsap = typeof window.gsap !== 'undefined';
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (home && hasGsap && !reduceMotion) {
+    const gsap = window.gsap;
+
+    // Apparition progressive : nom, sous-titre, citation et actions.
+    const intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    intro
+      .fromTo('#home-title',
+        { autoAlpha: 0, y: 36, filter: 'blur(7px)' },
+        { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 1.1, clearProps: 'filter' })
+      .fromTo('.home h2', { autoAlpha: 0, y: 20 },
+        { autoAlpha: 1, y: 0, duration: .75 }, '-=.6')
+      .fromTo('.home__quote', { autoAlpha: 0, y: 22 },
+        { autoAlpha: 1, y: 0, duration: .8 }, '-=.45')
+      .fromTo(['.home__socials', '.home__actions'], { autoAlpha: 0, y: 15 },
+        { autoAlpha: 1, y: 0, duration: .75, stagger: .13 }, '-=.4')
+      .fromTo('.home__decor', { autoAlpha: 0, scale: .96 },
+        { autoAlpha: 1, scale: 1, duration: 1.2, stagger: .08 }, '-=1.1');
+
+    // Les boutons restent carrés ; GSAP anime uniquement leur déplacement et leur échelle.
+    home.querySelectorAll('.home__button').forEach((button) => {
+      button.addEventListener('pointerenter', (event) => {
+        if (event.pointerType === 'touch') return;
+        gsap.to(button, { y: -4, scale: 1.025, duration: .3, ease: 'power2.out', overwrite: 'auto' });
+      });
+      button.addEventListener('pointerleave', () => {
+        gsap.to(button, { y: 0, scale: 1, duration: .35, ease: 'power3.out', overwrite: 'auto' });
+      });
+      button.addEventListener('blur', () => {
+        gsap.to(button, { y: 0, scale: 1, duration: .3, overwrite: 'auto' });
+      });
+    });
+
+    // Profondeur discrète : seuls les SVG et la grille suivent légèrement la souris.
+    if (window.matchMedia('(pointer: fine)').matches) {
+      const decor = Array.from(home.querySelectorAll('.home__decor'));
+      const layers = decor.map((element, i) => ({
+        x: gsap.quickTo(element, 'x', { duration: .9, ease: 'power3.out' }),
+        y: gsap.quickTo(element, 'y', { duration: .9, ease: 'power3.out' }),
+        strength: i % 2 === 0 ? 11 : -8,
+      }));
+      const grid = home.querySelector('.home__grid');
+      const gridX = gsap.quickTo(grid, 'x', { duration: 1.3, ease: 'power2.out' });
+      const gridY = gsap.quickTo(grid, 'y', { duration: 1.3, ease: 'power2.out' });
+
+      home.addEventListener('pointermove', (event) => {
+        if (event.pointerType === 'touch') return;
+        const rect = home.getBoundingClientRect();
+        const nx = ((event.clientX - rect.left) / rect.width - .5) * 2;
+        const ny = ((event.clientY - rect.top) / rect.height - .5) * 2;
+        layers.forEach(layer => {
+          layer.x(nx * layer.strength);
+          layer.y(ny * layer.strength);
+        });
+        gridX(nx * 4);
+        gridY(ny * 4);
+      }, { passive: true });
+      home.addEventListener('pointerleave', () => {
+        layers.forEach(layer => { layer.x(0); layer.y(0); });
+        gridX(0);
+        gridY(0);
+      });
+    }
+  }
 });
