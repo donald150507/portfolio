@@ -302,3 +302,101 @@ a:focus-visible, button:focus-visible { outline: 3px solid #348b55; outline-offs
   .home__actions { gap: 12px; }
   .home__button { font-size: 13px; }
 }
+
+/* Accueil V2 — identité typographique plus affirmée */
+:root { font-family: "Inter", sans-serif; }
+.home {
+  position: relative;
+  overflow: visible;
+  background:
+    radial-gradient(circle at 15% 25%, rgba(17,107,42,.08), transparent 34%),
+    radial-gradient(circle at 88% 70%, rgba(206,67,71,.055), transparent 27%),
+    #f4f9f4;
+}
+.home h1, .home h2 { font-family: "Space Grotesk", sans-serif; }
+.home h1 {
+  font-size: clamp(34px, 4.2vw, 54px);
+  font-weight: 700;
+  letter-spacing: -.045em;
+}
+.home h2 { font-size: clamp(18px,2.1vw,25px); letter-spacing: -.025em; font-weight: 500; }
+.home__quote { font-family: "Inter",sans-serif; font-size: 15px; font-weight: 450; line-height: 1.85; letter-spacing: 0; }
+.home__button { font-family: "Inter", sans-serif; letter-spacing: -.015em; border-radius: 8px; }
+.home__socials a,.home__social-pending { font-family:"Inter",sans-serif; letter-spacing: 0; }
+.navbar__links a { font-family:"Inter",sans-serif; font-weight: 600; }
+
+/* Choix du CV : survol, clavier et toucher */
+.cv-dropdown { position: relative; }
+.cv-dropdown__trigger { cursor: pointer; }
+.cv-chevron { font-size: 20px; line-height: 1; transition: transform .2s; }
+.cv-dropdown.is-open .cv-chevron,.cv-dropdown:hover .cv-chevron { transform: rotate(180deg); }
+.cv-dropdown__menu {
+  position: absolute;
+  z-index: 25;
+  top: calc(100% + 5px);
+  left: 0;
+  min-width: max(100%, 245px);
+  padding: 13px 7px 7px;
+  background: rgba(255,255,255,.94);
+  border: 1px solid rgba(16,85,34,.15);
+  border-radius: 13px;
+  box-shadow: 0 16px 34px rgba(5,49,20,.12);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(7px);
+  transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+}
+.cv-dropdown:hover .cv-dropdown__menu,
+.cv-dropdown:focus-within .cv-dropdown__menu,
+.cv-dropdown.is-open .cv-dropdown__menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.cv-dropdown__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 13px;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #184626;
+}
+.cv-dropdown__option[aria-disabled="true"] { color: #55755d; cursor: not-allowed; }
+.cv-dropdown__option small { color: #8b9a90; font-weight: 400; font-size: 11px; }
+
+/* Trois miniatures vectorielles nettes, ~100 px */
+.home__miniatures { display:flex; align-items:center; justify-content:center; gap:19px; margin-top:44px; flex-wrap:wrap; }
+.mini-card {
+  width: 106px;
+  height: 106px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+  border:1px solid rgba(18,85,34,.12);
+  border-radius:18px;
+  background:rgba(255,255,255,.68);
+  box-shadow:0 8px 28px rgba(16,74,31,.06);
+  -webkit-backdrop-filter:blur(9px);
+  backdrop-filter:blur(9px);
+  transition:transform .24s ease,box-shadow .24s ease;
+}
+.mini-card:hover { transform:translateY(-5px) rotate(-2deg); box-shadow:0 16px 30px rgba(16,74,31,.12); }
+.mini-card svg { width:70px; height:70px; }
+.mini-card span { font-family:"Inter",sans-serif; font-size:11px; font-weight:650; color:#195029; }
+@media(max-width:680px) {
+ .home h1 { font-size:clamp(30px,8vw,41px); }
+ .home__quote { font-size:14px; }
+ .home__miniatures { gap:11px; margin-top:37px; }
+ .mini-card { width:96px; height:100px; }
+ .mini-card svg { width:62px; height:62px; }
+ .cv-dropdown__menu { left:auto; right:0; }
+}
+@media(prefers-reduced-motion:reduce) { .mini-card,.cv-chevron,.cv-dropdown__menu { transition:none; } }
