@@ -60,7 +60,23 @@
   <!-- 03 · Accueil, fidèle à la maquette fournie -->
   <main id="contenu">
     <section id="accueil" class="home" aria-labelledby="home-title">
-      <div class="home__inner">
+      <!-- Décor léger : grille, halos et courbes data, sans miniatures -->
+      <div class="home__background" aria-hidden="true">
+        <div class="home__grid"></div>
+        <div class="home__glow home__glow--one"></div>
+        <div class="home__glow home__glow--two"></div>
+        <svg class="home__decor home__decor--left" viewBox="0 0 260 260">
+          <path d="M17 216C52 175 74 189 112 141S177 117 210 62 236 42 245 32"/>
+          <path d="M17 243C61 205 95 217 132 174S197 148 239 101"/>
+          <circle cx="112" cy="141" r="4"/><circle cx="210" cy="62" r="4"/>
+        </svg>
+        <svg class="home__decor home__decor--right" viewBox="0 0 260 260">
+          <path d="M20 204H240M35 30V218" class="home__axis"/>
+          <path d="M49 178L87 147 119 159 159 101 192 118 224 54"/>
+          <circle cx="87" cy="147" r="4"/><circle cx="159" cy="101" r="4"/><circle cx="224" cy="54" r="4"/>
+        </svg>
+      </div>
+      <div class="home__inner home__panel">
         <h1 id="home-title">ZINSOU Donald Dègnon</h1>
         <h2>Étudiant en Économie, Data Science et Finance</h2>
 
