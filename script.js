@@ -38,4 +38,26 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', event => {
     if (!header.contains(event.target)) closeMenu();
   });
+  // Menu CV accessible à la souris, au clavier et sur mobile.
+  const cvDropdown = document.querySelector('.cv-dropdown');
+  const cvTrigger = cvDropdown?.querySelector('.cv-dropdown__trigger');
+  const setCvOpen = (isOpen) => {
+    cvDropdown?.classList.toggle('is-open', isOpen);
+    cvTrigger?.setAttribute('aria-expanded', String(isOpen));
+  };
+  cvTrigger?.addEventListener('click', () => {
+    setCvOpen(!cvDropdown.classList.contains('is-open'));
+  });
+  cvDropdown?.addEventListener('mouseenter', () => setCvOpen(true));
+  cvDropdown?.addEventListener('mouseleave', () => setCvOpen(false));
+  cvDropdown?.addEventListener('focusout', (event) => {
+    if (!cvDropdown.contains(event.relatedTarget)) setCvOpen(false);
+  });
+  document.addEventListener('click', (event) => {
+    if (cvDropdown && !cvDropdown.contains(event.target)) setCvOpen(false);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setCvOpen(false);
+  });
+
 });
