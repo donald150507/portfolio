@@ -587,3 +587,164 @@ a:focus-visible, button:focus-visible { outline: 3px solid #348b55; outline-offs
   }
   .home__quote { font-size: 14px; }
 }
+
+/* =============================
+   SECTION 04 · À PROPOS
+   Contenu et ordre inspirés de la maquette Penpot.
+   ============================= */
+.about {
+  background: #ffffff;
+  color: #243229;
+  padding: 78px 24px 100px;
+}
+.about__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.about__heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.about__eyebrow {
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  color: #64846c;
+  margin-bottom: 13px;
+}
+.about h2 {
+  margin: 0;
+  color: #004d00;
+  font-family: "Anta", sans-serif;
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 400;
+  letter-spacing: .015em;
+  line-height: 1.2;
+}
+.about__heading-line {
+  display: block;
+  height: 2px;
+  width: 55px;
+  background: #004d00;
+  margin: 18px auto 0;
+}
+.about__intro {
+  max-width: 1050px;
+  margin: 40px auto 0;
+  text-align: center;
+}
+.about__intro p {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #3a3838;
+  line-height: 1.95;
+}
+.about__intro .about__availability {
+  color: #ba3039;
+  font-weight: 500;
+  margin-top: 22px;
+}
+.about__education { margin-top: 66px; }
+.about__education h3 {
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  font-size: clamp(23px, 2.7vw, 30px);
+  letter-spacing: .012em;
+  text-align: center;
+  color: #004d00;
+  margin: 0 0 30px;
+}
+.about__schools {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 21px;
+}
+.school-card {
+  display: grid;
+  grid-template-columns: 100px minmax(0,1fr);
+  min-height: 171px;
+  background: #f7faf7;
+  border: 1px solid #d8e8da;
+  box-shadow: 0 8px 25px rgba(17,64,29,.035);
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.school-card:hover {
+  transform: translateY(-4px);
+  border-color: #9fc7a7;
+  box-shadow: 0 15px 32px rgba(17,64,29,.09);
+}
+.school-card__visual {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  background: #deefdf;
+  border-right: 1px solid #d1e3d3;
+  color: #004d00;
+  font-family: "Anta", sans-serif;
+  font-size: 21px;
+  letter-spacing: .02em;
+}
+.school-card__visual--eneam { background: #e8f2e7; }
+.school-card__visual--college { background: #ebedeb; color: #485448; }
+.school-card__visual--college span { font-size: 17px; }
+.school-card__body {
+  padding: 17px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.school-card h4 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 0 0 10px;
+  color: #113c1d;
+}
+.school-card p {
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 0 0 11px;
+  color: #394c3e;
+}
+.school-card__year {
+  margin-top: auto;
+  font-family: "Anta", sans-serif;
+  font-size: 12px;
+  color: #326340;
+}
+@media (max-width: 1060px) {
+  .about__schools { gap: 13px; }
+  .school-card { grid-template-columns: 75px minmax(0,1fr); }
+  .school-card__visual { font-size: 16px; }
+  .school-card__visual--college span { font-size: 13px; }
+  .school-card__body { padding: 14px 12px; }
+}
+@media (max-width: 800px) {
+  .about { padding: 65px 20px 80px; }
+  .about__intro { margin-top: 32px; }
+  .about__intro p { font-size: 14px; line-height: 1.85; }
+  .about__education { margin-top: 51px; }
+  .about__schools { grid-template-columns: 1fr; gap: 13px; max-width: 580px; margin: auto; }
+  .school-card { grid-template-columns: 100px minmax(0,1fr); min-height: 140px; }
+  .school-card__visual { font-size: 20px; }
+  .school-card__visual--college span { font-size: 16px; }
+  .school-card__body { padding: 16px 18px; }
+  .school-card h4 { font-size: 14px; }
+  .school-card p { font-size: 13px; }
+}
+@media (max-width: 430px) {
+  .about { padding-inline: 16px; }
+  .school-card { grid-template-columns: 75px minmax(0,1fr); }
+  .school-card__visual { font-size: 16px; }
+  .school-card__visual--college span { font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .school-card { transition: none; }
+}
