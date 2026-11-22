@@ -136,12 +136,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const aboutSection = document.querySelector('#apropos');
   if (aboutSection && typeof window.gsap !== 'undefined' && !reduceMotion) {
     const gsap = window.gsap;
-    const path = aboutSection.querySelector('.academic-route__path-draw');
+    const path = aboutSection.querySelector('.academic-route__reveal-line');
     const steps = Array.from(aboutSection.querySelectorAll('.academic-step'));
     const pathLength = path?.getTotalLength() || 0;
     if (path && pathLength) {
-      // La base pointillée reste visible ; la couche verte se dessine par-dessus.
-      path.style.strokeDasharray = '3 9';
+      // La base pointillée reste visible. Un masque révèle les pointillés verts.
+      gsap.set(path, { strokeDasharray: pathLength, strokeDashoffset: pathLength });
       const reveal = () => {
         const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
         tl.fromTo('.about__heading, .about__intro, .about__tags',
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { autoAlpha: 0, y: 18 },
             { autoAlpha: 1, y: 0, duration: .65 }, '-=.45')
           .fromTo(path,
-            { strokeDashoffset: pathLength, strokeDasharray: '3 9' },
+            { strokeDashoffset: pathLength },
             { strokeDashoffset: 0, duration: 2.1, ease: 'none' }, '-=.12')
           .fromTo(steps,
             { autoAlpha: 0, x: 24 },
