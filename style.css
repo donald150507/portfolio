@@ -560,3 +560,18 @@ a:focus-visible, button:focus-visible { outline: 3px solid #348b55; outline-offs
 @media (prefers-reduced-motion: reduce) {
   .home__decor { will-change: auto; }
 }
+
+/* Grille technique lisible sans écraser le contenu */
+.home__grid {
+  inset: -8px;
+  opacity: 1;
+  background-image:
+    linear-gradient(to bottom, rgba(18, 85, 34, .115) 1px, transparent 1px),
+    linear-gradient(to right, rgba(18, 85, 34, .115) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.84), rgba(0,0,0,.7));
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,.84), rgba(0,0,0,.7));
+}
+@media (max-width: 680px) {
+  .home__grid { background-size: 36px 36px; }
+}
