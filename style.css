@@ -575,3 +575,55 @@ a:focus-visible, button:focus-visible { outline: 3px solid #348b55; outline-offs
 @media (max-width: 680px) {
   .home__grid { background-size: 36px 36px; }
 }
+
+/* Accueil mobile : tout le contenu dans l'espace visible sous bandeau (34px) + nav (72px).
+   Utilise une hauteur minimale, jamais un clip de contenu sur petits écrans. */
+@media (max-width: 680px) {
+  .home {
+    min-height: calc(100vh - 106px);
+    min-height: calc(100svh - 106px);
+    padding: clamp(12px, 3svh, 24px) 18px clamp(12px, 3svh, 24px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .home__inner { width: 100%; }
+  .home h1 {
+    font-size: clamp(27px, 7.5vw, 38px);
+    line-height: 1.12;
+    margin-bottom: 8px;
+  }
+  .home h2 {
+    font-size: clamp(15px, 4.1vw, 19px);
+    line-height: 1.3;
+  }
+  .home__quote {
+    font-size: 14px;
+    line-height: 1.57;
+    margin: clamp(13px, 2.5svh, 22px) auto clamp(12px, 2.2svh, 20px);
+    max-width: 540px;
+  }
+  .home__socials {
+    margin-bottom: clamp(13px, 2.2svh, 21px);
+    gap: 22px;
+  }
+  .home__socials a, .home__social-pending { font-size: 12px; }
+  .home__socials svg { width: 21px; height: 21px; }
+  .home__actions { gap: 10px; }
+  .home__button {
+    min-height: 42px;
+    min-width: 0;
+    padding: 9px 15px;
+    font-size: 14px;
+  }
+}
+/* Téléphones compacts / affichage paysage : réduire davantage les espacements. */
+@media (max-width: 680px) and (max-height: 700px) {
+  .home { padding-top: 9px; padding-bottom: 9px; }
+  .home h1 { font-size: clamp(25px, 7vw, 34px); margin-bottom: 5px; }
+  .home h2 { font-size: clamp(14px, 3.8vw, 18px); }
+  .home__quote { margin-top: 10px; margin-bottom: 10px; line-height: 1.45; }
+  .home__socials { margin-bottom: 10px; }
+  .home__button { min-height: 39px; padding: 8px 13px; }
+  .home__actions { gap: 8px; }
+}
