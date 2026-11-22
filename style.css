@@ -398,3 +398,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid #348b55; outline-offs
 @media (max-width: 800px) {
   .navbar__links a { font-size: 15px; }
 }
+
+/* Affinage accueil : citation +2 px, y compris sur mobile */
+.home__quote { font-size: 16px; }
+@media (max-width: 680px) { .home__quote { font-size: 16px; } }
