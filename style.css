@@ -402,3 +402,136 @@ a:focus-visible, button:focus-visible { outline: 3px solid #348b55; outline-offs
 /* Affinage accueil : citation +2 px, y compris sur mobile */
 .home__quote { font-size: 16px; }
 @media (max-width: 680px) { .home__quote { font-size: 16px; } }
+
+/* Accueil V3 — minimalisme premium + aura verte + Data Signature */
+.home {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 620px;
+  padding: 75px 24px 105px;
+  background: linear-gradient(180deg,#f7fbf7 0%,#eff7f0 100%);
+}
+.home__background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.home__grid {
+  position: absolute;
+  inset: 0;
+  opacity: .48;
+  background-image: linear-gradient(rgba(16,91,39,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(16,91,39,.055) 1px,transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse at center,#000 0%,transparent 78%);
+  mask-image: radial-gradient(ellipse at center,#000 0%,transparent 78%);
+}
+.home__glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(65px);
+  will-change: transform;
+  animation: homeAuraFloat 12s ease-in-out infinite alternate;
+}
+.home__glow--one {
+  width: min(52vw,540px);
+  height: min(52vw,540px);
+  background: rgba(58,166,86,.16);
+  left: 50%;
+  top: 2%;
+  transform: translateX(-50%);
+}
+.home__glow--two {
+  width: min(34vw,330px);
+  height: min(34vw,330px);
+  background: rgba(115,194,139,.14);
+  left: 62%;
+  top: 39%;
+  animation-duration: 16s;
+}
+@keyframes homeAuraFloat {
+  0% { translate: 0 0; scale: 1; }
+  100% { translate: 10px 22px; scale: 1.12; }
+}
+.home__decor {
+  position: absolute;
+  width: clamp(145px,18vw,245px);
+  height: auto;
+  opacity: .45;
+  fill: none;
+  stroke: rgba(16,91,39,.5);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: homeDecorFloat 9s ease-in-out infinite alternate;
+}
+.home__decor circle { fill: #ce4347; stroke: none; }
+.home__decor--left { left: 2.5%; top: 23%; }
+.home__decor--right { right: 2.5%; top: 14%; animation-delay: -4s; }
+.home__axis { stroke: rgba(16,91,39,.16); }
+@keyframes homeDecorFloat { to { transform: translateY(13px); } }
+.home__panel { position: relative; z-index: 1; }
+.home h1 {
+  font-family: "Anta", sans-serif;
+  font-size: clamp(36px,4.3vw,56px);
+  line-height: 1.2;
+  font-weight: 400;
+  letter-spacing: .015em;
+  color: #053d16;
+  margin-bottom: 14px;
+}
+.home h2 {
+  font-family: "Anta", sans-serif;
+  font-size: clamp(19px,2.2vw,25px);
+  line-height: 1.4;
+  letter-spacing: .012em;
+}
+.home__quote {
+  max-width: 660px;
+  margin: 43px auto 32px;
+  font-family: "Poppins",sans-serif;
+  font-size: 16px;
+  line-height: 1.85;
+  letter-spacing: .015em;
+  font-weight: 500;
+}
+.home__socials { margin-bottom: 34px; }
+.home__socials a { transition: color .22s ease, transform .22s ease; }
+.home__actions { gap: 18px; }
+.home__button {
+  min-height: 48px;
+  min-width: 204px;
+  padding: 12px 22px;
+  border-radius: 0;
+  font-family: "Anta",sans-serif;
+  font-size: 16px;
+  letter-spacing: .02em;
+  box-shadow: 0 7px 20px rgba(14,66,28,.06);
+  transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+}
+.home__button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 26px rgba(14,66,28,.12);
+}
+.home__button--primary { background:#004d00; }
+.home__button--primary:hover { background:#076023; }
+.cv-dropdown__menu { border-radius:0; }
+.cv-dropdown__option { border-radius:0; }
+@media (max-width:900px) {
+  .home__decor { opacity:.22; }
+}
+@media (max-width:680px) {
+  .home { min-height: 590px; padding: 68px 20px 90px; }
+  .home h1 { font-size:clamp(30px,8vw,42px); }
+  .home h2 { font-size:clamp(16px,4.2vw,20px); }
+  .home__quote { margin: 34px auto 29px; font-size: 16px; line-height: 1.75; }
+  .home__decor { display:none; }
+  .home__glow--one { width:270px; height:270px; left:45%; }
+  .home__glow--two { width:190px; height:190px; }
+  .home__actions { gap:12px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .home__glow,.home__decor { animation:none; will-change:auto; }
+}
