@@ -170,8 +170,13 @@
           <div class="academic-route">
             <!-- Un chemin SVG ondulé, tracé au scroll par GSAP. -->
             <svg class="academic-route__svg" viewBox="0 0 110 535" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <mask id="academic-route-reveal" maskUnits="userSpaceOnUse">
+                  <path class="academic-route__reveal-line" d="M50 13 C105 76 7 122 49 185 S100 284 52 354 S14 447 50 515" stroke="white" stroke-width="8" stroke-linecap="round" fill="none"></path>
+                </mask>
+              </defs>
               <path class="academic-route__path-base" d="M50 13 C105 76 7 122 49 185 S100 284 52 354 S14 447 50 515"></path>
-              <path class="academic-route__path-draw" d="M50 13 C105 76 7 122 49 185 S100 284 52 354 S14 447 50 515"></path>
+              <path class="academic-route__path-draw" mask="url(#academic-route-reveal)" d="M50 13 C105 76 7 122 49 185 S100 284 52 354 S14 447 50 515"></path>
             </svg>
             <div class="academic-route__steps">
               <article class="academic-step">
