@@ -130,4 +130,44 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   }
+
+  // À propos : dessin progressif du chemin et révélation des étapes au scroll.
+  // IntersectionObserver évite une dépendance supplémentaire à ScrollTrigger.
+  const aboutSection = document.querySelector('#apropos');
+  if (aboutSection && typeof window.gsap !== 'undefined' && !reduceMotion) {
+    const gsap = window.gsap;
+    const path = aboutSection.querySelector('.academic-route__path-draw');
+    const steps = Array.from(aboutSection.querySelectorAll('.academic-step'));
+    const pathLength = path?.getTotalLength() || 0;
+    if (path && pathLength) {
+      // La base pointillée reste visible ; la couche verte se dessine par-dessus.
+      path.style.strokeDasharray = '3 9';
+      const reveal = () => {
+        const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+        tl.fromTo('.about__heading, .about__intro, .about__tags',
+          { autoAlpha: 0, y: 20 },
+          { autoAlpha: 1, y: 0, duration: .7, stagger: .13 })
+          .fromTo('.about__education-title',
+            { autoAlpha: 0, y: 18 },
+            { autoAlpha: 1, y: 0, duration: .65 }, '-=.45')
+          .fromTo(path,
+            { strokeDashoffset: pathLength, strokeDasharray: '3 9' },
+            { strokeDashoffset: 0, duration: 2.1, ease: 'none' }, '-=.12')
+          .fromTo(steps,
+            { autoAlpha: 0, x: 24 },
+            { autoAlpha: 1, x: 0, duration: .65, stagger: .36 }, '-=1.95');
+      };
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          if (entries.some(entry => entry.isIntersecting)) {
+            observer.disconnect();
+            reveal();
+          }
+        }, { threshold: .12 });
+        observer.observe(aboutSection);
+      } else {
+        reveal();
+      }
+    }
+  }
 });
