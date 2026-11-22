@@ -80,8 +80,10 @@ document.addEventListener('DOMContentLoaded', () => {
         { autoAlpha: 1, y: 0, duration: .8 }, '-=.45')
       .fromTo(['.home__socials', '.home__actions'], { autoAlpha: 0, y: 15 },
         { autoAlpha: 1, y: 0, duration: .75, stagger: .13 }, '-=.4')
-      .fromTo('.home__decor', { autoAlpha: 0, scale: .96 },
-        { autoAlpha: 1, scale: 1, duration: 1.2, stagger: .08 }, '-=1.1');
+      .from('.home__decor', {
+        opacity: 0, scale: .96, duration: 1.2, stagger: .08,
+        clearProps: 'opacity,scale'
+      }, '-=1.1');
 
     // Les boutons restent carrés ; GSAP anime uniquement leur déplacement et leur échelle.
     home.querySelectorAll('.home__button').forEach((button) => {
