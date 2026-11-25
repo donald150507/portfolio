@@ -198,4 +198,65 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+
+  // Portfolio : filtres fonctionnels, boutons accessibles au clavier.
+  const projectFilters = [...document.querySelectorAll('.project-filter')];
+  const projectCards = [...document.querySelectorAll('.project-card')];
+  projectFilters.forEach(button => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+      projectFilters.forEach(item => {
+        const selected = item === button;
+        item.classList.toggle('is-active', selected);
+        item.setAttribute('aria-pressed', String(selected));
+      });
+      projectCards.forEach(card => {
+        card.hidden = filter !== 'all' && card.dataset.category !== filter;
+      });
+    });
+  });
+
+  // Apparitions au scroll des autres sections, avec fallback sans GSAP.
+  if (typeof window.gsap !== 'undefined' && !reduceMotion && 'IntersectionObserver' in window) {
+    const gsap = window.gsap;
+    const targets = [
+      ...document.querySelectorAll('.showcase .section-heading'),
+      ...document.querySelectorAll('.showcase .project-card'),
+      ...document.querySelectorAll('.experience-item'),
+      ...document.querySelectorAll('.certification-empty'),
+      ...document.querySelectorAll('.skills-group'),
+      ...document.querySelectorAll('.blog-card'),
+      ...document.querySelectorAll('.footer-headline')
+    ];
+    const contentObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        contentObserver.unobserve(entry.target);
+        gsap.fromTo(entry.target,
+          { autoAlpha: 0, y: 22 },
+          { autoAlpha: 1, y: 0, duration: .72, ease: 'power2.out', clearProps: 'all' });
+      });
+    }, { rootMargin: '0px 0px -40px 0px', threshold: .08 });
+    targets.forEach(target => contentObserver.observe(target));
+  }
+
+  // Navigation : suivre la section affichée sans changer la logique du menu existant.
+  if ('IntersectionObserver' in window) {
+    const sections = [...document.querySelectorAll('main > section[id]')];
+    const links = [...document.querySelectorAll('.navbar__links a[href^="#"]')];
+    let visibleSection = 'accueil';
+    const navObserver = new IntersectionObserver(entries => {
+      const candidates = entries.filter(entry => entry.isIntersecting);
+      if (!candidates.length) return;
+      candidates.sort((a,b) => b.intersectionRatio - a.intersectionRatio);
+      visibleSection = candidates[0].target.id;
+      links.forEach(link => {
+        const current = link.getAttribute('href') === '#' + visibleSection;
+        link.classList.toggle('is-current', current);
+        if (current) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+    }, { rootMargin: '-28% 0px -52% 0px', threshold: [0,.1,.3,.6] });
+    sections.forEach(section => navObserver.observe(section));
+  }
 });
