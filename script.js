@@ -147,8 +147,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const rect = aboutSection.getBoundingClientRect();
       const headerHeight = header.offsetHeight;
       const stickyTop = parseFloat(getComputedStyle(header).top) || 108;
-      const start = window.innerHeight * .82;
-      const finish = stickyTop;
+      // Le titre reste centré ; il ne part à droite qu'au moment
+      // où son emplacement normal va se glisser sous la navigation.
+      const start = stickyTop + headerHeight * .55;
+      const finish = stickyTop - 24;
       const progress = Math.max(0, Math.min(1, (start - rect.top) / Math.max(1, start - finish)));
       // Au départ au centre ; au scroll, à droite avec une marge de 12 px.
       const rightShift = Math.max(0, (header.clientWidth - title.offsetWidth) / 2 - 12);
