@@ -590,188 +590,167 @@ a:focus-visible, button:focus-visible { outline: 3px solid #348b55; outline-offs
 
 
 
-/* À PROPOS — identité éditoriale, ivoire / vert profond / corail. */
+
+/* À PROPOS — mêmes couleurs, composition horizontale et titre sticky mobile/desktop */
 .about {
   --about-green: #174e35;
   --about-coral: #d7654c;
   background: #faf9f5;
   color: var(--about-green);
-  padding: clamp(60px, 7vw, 104px) 24px clamp(70px, 8vw, 118px);
+  padding: 44px 24px 112px;
   border-top: 1px solid #e0e8db;
-  overflow: hidden;
+  position: relative;
+  /* Pas d'overflow hidden : indispensable au titre sticky. */
 }
 .about__wrap { max-width: 1280px; margin: 0 auto; }
-.about__masthead, .about__minor-heading {
+.about__sticky-header {
+  position: sticky;
+  top: 108px;
+  z-index: 22;
+  width: 100%;
+  min-height: 86px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: background-color .28s ease, box-shadow .28s ease;
+}
+.about__sticky-header.is-stuck {
+  background: rgba(250,249,245,.94);
+  box-shadow: 0 1px 0 rgba(23,78,53,.14);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+.about__section-title {
+  font: 400 clamp(38px,5.2vw,74px)/1.1 "Anta",sans-serif;
+  letter-spacing: -.035em;
+  white-space: nowrap;
+  margin: 0;
+  transform-origin: center center;
+  will-change: transform;
+}
+.about__section-title span { color: var(--about-coral); }
+.about__minor-heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   text-transform: uppercase;
   font: 500 11px/1.5 "Poppins",sans-serif;
-  letter-spacing: .14em;
-}
-.about__masthead {
-  padding: 0 0 17px;
-  border-bottom: 1px solid rgba(23,78,53,.3);
-}
-.about__edition { color: #8a9b8e; }
-.about__hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr);
-  gap: clamp(20px, 4vw, 66px);
-  align-items: center;
-  padding: clamp(50px, 6vw, 85px) 0 clamp(45px, 6vw, 82px);
-}
-.about__statement { min-width: 0; }
-.about__big-title {
-  font-family: "Anta",sans-serif;
-  font-size: clamp(43px, 5.6vw, 89px);
-  font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: -.055em;
-  margin: 0;
-}
-.about__line { display: block; overflow: hidden; padding: .035em 0; }
-.about__line > span { display: inline-block; }
-.about__line--accent { color: var(--about-coral); }
-.about__punct { color: var(--about-coral); }
-.about__identity {
-  display: grid;
-  grid-template-columns: 3px minmax(0,1fr);
-  align-items: stretch;
-  gap: 21px;
-  max-width: 570px;
-  margin-top: clamp(30px, 4vw, 57px);
-}
-.about__identity-line { background: var(--about-coral); }
-.about__identity p {
-  margin: 0;
-  font: 400 15px/1.9 "Poppins",sans-serif;
-  color: #465e4d;
-}
-.about__identity strong { color: var(--about-green); font-weight: 600; }
-.about__art {
-  position: relative;
-  border: 1px solid #c8d8c8;
-  background: #f2f5ed;
-  min-width: 0;
-  padding: 18px 21px 14px;
-  box-shadow: 14px 14px 0 #e2ebdf;
-}
-.about__art-header,.about__art-footer {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  color: #6b8d78;
-  font: 500 10px/1.4 "Poppins",sans-serif;
-  letter-spacing: .12em;
-}
-.about__figure { display: block; width: 100%; height: auto; }
-.about__figure-data,.about__figure-paper,.about__figure-spark,.about__figure-rings {
-  transform-box: fill-box;
-  transform-origin: center;
-}
-.about__bottom {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(36px, 6vw, 100px);
-  padding-top: 34px;
-  border-top: 1px solid rgba(23,78,53,.22);
-}
-.about__minor-heading {
+  letter-spacing: .13em;
   color: #708a76;
-  margin-bottom: 26px;
-  font-size: 10px;
+  border-bottom: 1px solid rgba(23,78,53,.24);
+  padding-bottom: 18px;
+  margin-bottom: 15px;
 }
+.about__main {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: clamp(46px,6vw,104px);
+  align-items: start;
+  padding-top: 64px;
+}
+.about__qualities,.about__journey { min-width: 0; }
 .about__quality {
   display: grid;
-  grid-template-columns: 38px minmax(0,1fr) 62px;
-  gap: 10px;
+  grid-template-columns: 35px minmax(0,1fr) 64px;
   align-items: center;
-  min-height: 94px;
+  gap: 12px;
+  min-height: 115px;
   border-bottom: 1px solid #d5e0d3;
   color: var(--about-green);
-  transition: padding-left .3s ease, color .3s ease;
+  transition: padding-left .32s ease,color .32s ease;
 }
-.about__quality:hover { padding-left: 9px; color: var(--about-coral); }
-.about__quality-no { font: 500 11px "Poppins",sans-serif; color: #8da292; }
+.about__quality:hover { color: var(--about-coral); padding-left: 9px; }
+.about__quality-no { color: #8da292; font: 500 11px "Poppins",sans-serif; }
 .about__quality strong {
-  font: 400 clamp(25px, 3vw, 43px)/1.2 "Anta",sans-serif;
-  letter-spacing: -.025em;
+  font: 400 clamp(26px,3vw,44px)/1.2 "Anta",sans-serif;
+  letter-spacing: -.028em;
 }
-.about__quality svg { width: 56px; height: 56px; }
-.about__interest-grid { display: flex; flex-wrap: wrap; gap: 10px; align-content: start; }
-.about__interest-grid span {
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid #b9cdbd;
-  padding: 13px 16px;
-  color: var(--about-green);
-  background: transparent;
-  font: 400 13px/1.3 "Anta",sans-serif;
-  letter-spacing: .025em;
-  transition: background .25s, color .25s, border-color .25s, transform .25s;
-}
-.about__interest-grid span:hover {
-  background: var(--about-green);
-  border-color: var(--about-green);
-  color: #fff;
-  transform: translateY(-3px);
-}
-.about__interest-note { color: #637968; font: 400 13px/1.8 "Poppins",sans-serif; margin: 27px 0 0; max-width: 420px; }
-.about__journey { padding-top: clamp(68px, 7vw, 104px); }
-.about__journey > .about__minor-heading {
-  border-bottom: 1px solid rgba(23,78,53,.22);
-  padding-bottom: 16px;
-  margin-bottom: 0;
-}
-.about__journey-steps { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); }
+.about__quality svg { width: 58px; height: 58px; }
+.about__journey-steps { display: flex; flex-direction: column; }
 .about__journey-step {
-  display: grid;
-  grid-template-columns: 48px minmax(0,1fr);
-  grid-template-rows: auto auto;
-  column-gap: 19px;
-  align-content: start;
-  padding: 28px 22px 25px 0;
-  border-top: 3px solid var(--about-green);
   position: relative;
+  display: grid;
+  grid-template-columns: 56px minmax(0,1fr);
+  grid-template-rows: auto auto;
+  column-gap: 17px;
+  min-height: 124px;
+  padding: 20px 0 21px;
+  border-bottom: 1px solid #d5e0d3;
 }
-.about__journey-step:not(:last-child) { border-right: 1px solid #dce5da; margin-right: 20px; }
-.about__journey-year { grid-column: 1/-1; font: 500 11px/1.4 "Poppins",sans-serif; color: #768d7b; margin-bottom: 17px; }
+.about__journey-year {
+  grid-column: 1/-1;
+  color: #768d7b;
+  font: 500 11px/1.4 "Poppins",sans-serif;
+  margin-bottom: 12px;
+}
 .about__journey-symbol {
-  width: 48px; height: 48px; display: grid; place-items: center;
-  background: #e0eadc; color: var(--about-green);
+  width: 52px; height: 52px;
+  display: grid; place-items: center;
+  background: #e0eadc;
+  color: var(--about-green);
   font: 400 25px "Anta",sans-serif;
 }
-.about__journey-step:last-child .about__journey-symbol { background: #f9ded4; color: #a74d36; }
-.about__journey-step strong { display: block; font: 400 17px/1.3 "Anta",sans-serif; margin: 0 0 8px; }
-.about__journey-step small { font: 400 12px/1.7 "Poppins",sans-serif; color: #65796a; }
-@media (max-width: 1000px) {
-  .about__hero { grid-template-columns: 1.02fr .98fr; gap: 24px; }
-  .about__big-title { font-size: clamp(39px, 5.1vw, 62px); }
-  .about__bottom { gap: 35px; }
+.about__journey-step:last-child .about__journey-symbol { background:#f9ded4; color:#a74d36; }
+.about__journey-step strong {
+  display: block;
+  font: 400 clamp(15px,1.55vw,20px)/1.3 "Anta",sans-serif;
+  margin: 1px 0 7px;
 }
-@media (max-width: 760px) {
-  .about { padding: 62px 18px 82px; }
-  .about__hero { grid-template-columns: 1fr; padding: 43px 0 58px; gap: 44px; }
-  .about__big-title { font-size: clamp(38px, 9.1vw, 72px); }
-  .about__identity { margin-top: 30px; }
-  .about__identity p { font-size: 14px; line-height: 1.8; }
-  .about__art { width: min(100% - 14px, 520px); margin-left: 0; }
-  .about__bottom { grid-template-columns: 1fr; gap: 55px; }
-  .about__journey-steps { grid-template-columns: 1fr; }
-  .about__journey-step { border-right: none !important; margin-right: 0 !important; padding: 21px 0; }
-  .about__journey-step:not(:last-child) { border-bottom: 1px solid #dce5da; }
+.about__journey-step small { display:block; font:400 12px/1.65 "Poppins",sans-serif; color:#65796a; }
+.about__interests {
+  border-top: 1px solid rgba(23,78,53,.25);
+  margin-top: clamp(70px,8vw,120px);
+  padding-top: 30px;
+  text-align: center;
 }
-@media (max-width: 440px) {
-  .about__edition { font-size: 9px; }
-  .about__big-title { font-size: clamp(34px, 9.1vw, 43px); }
-  .about__art { padding: 10px; }
-  .about__quality { min-height: 78px; grid-template-columns: 25px minmax(0,1fr) 50px; }
-  .about__quality svg { width: 45px; height: 45px; }
-  .about__quality strong { font-size: 26px; }
-  .about__interest-grid span { font-size: 12px; padding: 10px 12px; }
+.about__interests .about__minor-heading {
+  justify-content: center;
+  border: 0;
+  margin-bottom: 27px;
+  padding-bottom: 0;
 }
-@media (prefers-reduced-motion: reduce) {
-  .about__quality,.about__interest-grid span { transition: none; }
+.about__interest-grid {
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+  gap:12px;
+  max-width:1050px; margin:0 auto;
+}
+.about__interest-grid span {
+  display:inline-flex; align-items:center; justify-content:center;
+  border:1px solid #b9cdbd; background:transparent;
+  color:var(--about-green); padding:15px 19px;
+  font:400 14px/1.35 "Anta",sans-serif; letter-spacing:.025em;
+  transition:background-color .25s,color .25s,border-color .25s,transform .25s;
+}
+.about__interest-grid span:hover {
+  background:var(--about-green); border-color:var(--about-green);
+  color:#fff; transform:translateY(-3px);
+}
+.about__interest-note {
+  font:400 13px/1.85 "Poppins",sans-serif;
+  color:#637968; margin:30px auto 0;
+}
+@media(max-width:820px) {
+  .about { padding:30px 18px 75px; }
+  .about__sticky-header { top:104px; min-height:74px; }
+  .about__section-title { font-size:clamp(32px,7vw,52px); }
+  .about__main { grid-template-columns:1fr; gap:58px; padding-top:43px; }
+  .about__quality { min-height:94px; }
+  .about__journey-step { min-height:116px; }
+  .about__interests { margin-top:70px; }
+}
+@media(max-width:430px) {
+  .about__section-title { font-size:32px; }
+  .about__minor-heading { font-size:10px; }
+  .about__quality { grid-template-columns:26px minmax(0,1fr) 47px; min-height:82px; }
+  .about__quality strong { font-size:clamp(23px,7vw,31px); }
+  .about__quality svg { width:42px; height:42px; }
+  .about__journey-step { grid-template-columns:46px minmax(0,1fr); }
+  .about__journey-symbol { width:42px; height:42px; font-size:21px; }
+  .about__interest-grid span { font-size:12px; padding:11px 13px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .about__section-title { will-change:auto; }
+  .about__sticky-header,.about__quality,.about__interest-grid span { transition:none; }
 }
