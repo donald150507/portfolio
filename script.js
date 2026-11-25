@@ -137,18 +137,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = aboutSection.querySelector('.about__sticky-header');
     const title = aboutSection.querySelector('.about__section-title');
     let ticking = false;
+    // GSAP lisse le déplacement du titre pendant que le conteneur reste sticky.
+    const slideTitle = title && typeof window.gsap !== 'undefined' && !reduceMotion
+      ? window.gsap.quickTo(title, 'x', { duration: .28, ease: 'power2.out' })
+      : null;
     const updateAboutTitle = () => {
       ticking = false;
       if (!title || !header) return;
       const rect = aboutSection.getBoundingClientRect();
-      const headRect = header.getBoundingClientRect();
-      const from = window.innerHeight * .64;
-      const to = headRect.height + 108;
-      const progress = Math.max(0, Math.min(1, (from - rect.top) / Math.max(1, from - to)));
-      // Translate from horizontal center to right edge, maintaining a small inset.
-      const maxShift = Math.max(0, (header.clientWidth - title.offsetWidth) / 2 - 18);
-      title.style.transform = 'translate3d(' + (maxShift * progress).toFixed(2) + 'px,0,0)';
-      header.classList.toggle('is-stuck', rect.top < 115 && rect.bottom > headRect.height + 110);
+      const headerHeight = header.offsetHeight;
+      const stickyTop = parseFloat(getComputedStyle(header).top) || 108;
+      const start = window.innerHeight * .82;
+      const finish = stickyTop;
+      const progress = Math.max(0, Math.min(1, (start - rect.top) / Math.max(1, start - finish)));
+      // Au départ au centre ; au scroll, à droite avec une marge de 12 px.
+      const rightShift = Math.max(0, (header.clientWidth - title.offsetWidth) / 2 - 12);
+      const x = rightShift * progress;
+      if (slideTitle) slideTitle(x);
+      else title.style.transform = 'translate3d(' + x.toFixed(2) + 'px,0,0)';
+      header.classList.toggle('is-stuck', rect.top <= stickyTop && rect.bottom > stickyTop + headerHeight);
     };
     window.addEventListener('scroll', () => {
       if (!ticking) {
