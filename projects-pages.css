@@ -1,0 +1,180 @@
+
+/* Pages projets — continuité graphique ivoire / vert forêt / corail */
+.projects-page {
+  --pr-green:#174e35;
+  --pr-coral:#d7654c;
+  --pr-cream:#faf9f5;
+  --pr-line:#d6e1d5;
+  background:var(--pr-cream);
+  color:var(--pr-green);
+  font-family:"Poppins",sans-serif;
+}
+.projects-page *, .projects-page *::before, .projects-page *::after { box-sizing:border-box; }
+.page-shell { max-width:1260px; margin:0 auto; padding-left:24px; padding-right:24px; }
+.pages-header {
+  position:sticky; top:0; z-index:50; min-height:80px;
+  display:flex; align-items:center; justify-content:space-between; gap:20px;
+  padding:16px max(24px,calc((100vw - 1212px)/2));
+  border-bottom:1px solid rgba(23,78,53,.15);
+  background:rgba(250,249,245,.94);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+}
+.pages-back { display:flex;align-items:center;gap:13px;font:500 12px/1.5 "Poppins",sans-serif; }
+.pages-back span {font-size:26px;font-weight:400;line-height:1;color:var(--pr-coral);transition:transform .2s;}
+.pages-back:hover span {transform:translateX(-4px);}
+.pages-signature {font:400 16px "Anta",sans-serif;text-align:right;}
+.pages-signature span {color:var(--pr-coral);}
+.pages-eyebrow {
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ padding-bottom:17px;border-bottom:1px solid #c4d4c4;
+ color:#78927e;font:500 10px/1.5 "Poppins",sans-serif;letter-spacing:.15em;
+}
+.projects-page__hero {padding-top:clamp(46px,6vw,84px);}
+.projects-page__title {
+ display:grid;grid-template-columns:1.15fr .85fr;align-items:end;
+ gap:60px;padding:clamp(36px,6vw,70px) 0 clamp(34px,5vw,55px);
+}
+.projects-page__title h1 {
+ font:400 clamp(60px,9vw,130px)/1.01 "Anta",sans-serif;
+ letter-spacing:-.06em;margin:0;
+}
+.projects-page__title h1 em {font-style:normal;color:var(--pr-coral);}
+.projects-page__title > p {
+ max-width:410px;margin:0 0 11px;
+ font:400 14px/1.9 "Poppins",sans-serif;color:#637667;
+}
+.projects-controls {display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-bottom:19px;border-bottom:1px solid #c4d4c4;}
+.projects-page .project-filters {margin:0;}
+.projects-page .project-filter {background:transparent;border:1px solid #c3d3c4;color:#567360;}
+.projects-page .project-filter.is-active,.projects-page .project-filter:hover {background:var(--pr-green);color:#fff;border-color:var(--pr-green);}
+.projects-count {font:500 11px "Poppins",sans-serif;color:#78917d;margin:0;}
+.projects-page__list {padding-top:34px;padding-bottom:clamp(80px,10vw,130px);}
+.projects-all-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;}
+.catalog-card {min-width:0;background:#fff;border:1px solid #dbe5da;transition:border-color .25s,box-shadow .25s,transform .25s;}
+.catalog-card:hover {border-color:#8eb09a;box-shadow:0 20px 44px rgba(23,78,53,.08);transform:translateY(-4px);}
+.catalog-card__link {display:block;height:100%;color:inherit;}
+.catalog-card__link:focus-visible {outline:3px solid var(--pr-coral);outline-offset:4px;}
+.catalog-card__content {padding:28px 30px 30px;}
+.catalog-card__meta {display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:500 10px/1.5 "Poppins",sans-serif;letter-spacing:.05em;color:#788b7d;}
+.catalog-card h2 {font:400 clamp(32px,3.1vw,46px)/1.2 "Anta",sans-serif;letter-spacing:-.028em;margin:20px 0 12px;}
+.catalog-card h2 span {color:var(--pr-coral);}
+.catalog-card__content > p {font:400 13px/1.8 "Poppins",sans-serif;color:#5e7464;margin:0 0 24px;max-width:490px;}
+.catalog-card__foot {border-top:1px solid #d6e1d5;padding-top:16px;display:flex;justify-content:space-between;align-items:center;font:500 12px "Poppins",sans-serif;}
+.catalog-card__foot strong {color:var(--pr-coral);font:400 24px "Anta",sans-serif;transition:transform .25s;}
+.catalog-card:hover .catalog-card__foot strong {transform:translate(4px,-4px);}
+
+/* Graphismes éditoriaux : illustrations, jamais présentées comme des captures. */
+.catalog-art {position:relative;height:284px;overflow:hidden;isolation:isolate;}
+.catalog-art__kind {position:absolute;left:22px;top:19px;font:500 10px "Poppins",sans-serif;letter-spacing:.11em;opacity:.8;}
+.catalog-art__caption {position:absolute;left:20px;bottom:15px;font:500 9px/1.4 "Poppins",sans-serif;letter-spacing:.07em;opacity:.7;}
+.catalog-art--share {background:#d6e8d8;padding:29px;}
+.catalog-art__top {display:flex;justify-content:space-between;gap:10px;max-width:380px;margin:auto;color:#41644d;font:500 9px "Poppins",sans-serif;letter-spacing:.13em;}
+.catalog-art__screen {position:absolute;inset:65px 17% 45px;background:#19533a;border:10px solid #fafcf9;box-shadow:13px 12px 0 rgba(16,66,34,.11);overflow:hidden;}
+.catalog-art__toolbar {position:absolute;left:0;right:0;top:0;height:17px;background:#e6eee4;}
+.catalog-art__wave {position:absolute;left:15%;right:15%;top:39%;height:68px;border-bottom:4px solid #c8efbb;border-radius:40% 40% 20% 20%;transform:rotate(-11deg);}
+.catalog-art__panels {position:absolute;left:12px;bottom:13px;display:flex;gap:6px;}
+.catalog-art__panels i {width:42px;height:13px;background:#5d9770;display:block;}
+.catalog-art--school {background:#e6eee6;color:#174e35;}
+.catalog-art__big {position:absolute;left:9%;top:18%;font:400 clamp(85px,10vw,155px)/1 "Anta",sans-serif;letter-spacing:-.08em;}
+.catalog-art__big span {color:#d7654c;}
+.catalog-art__bars {position:absolute;right:10%;bottom:17%;height:108px;display:flex;align-items:end;gap:9px;}
+.catalog-art__bars i {display:block;width:17px;background:#8cb89a;height:35%;}
+.catalog-art__bars i:nth-child(2){height:68%;}.catalog-art__bars i:nth-child(3){height:48%;background:#d7654c;}.catalog-art__bars i:nth-child(4){height:90%;}.catalog-art__bars i:nth-child(5){height:75%;}.catalog-art__bars i:nth-child(6){height:100%;}
+.catalog-art--report {background:#f6e6d9;}
+.catalog-art__process {position:absolute;inset:23% 6% 22%;display:flex;align-items:center;justify-content:center;gap:8px;}
+.catalog-art__process span {border:1px solid #174e35;padding:15px 10px;color:#174e35;background:rgba(255,255,255,.35);font:400 clamp(9px,1.1vw,14px) "Anta",sans-serif;}
+.catalog-art__process b {color:#c9654d;font-size:25px;font-weight:400;}
+.catalog-art--revixo {background:#e8eddb;}
+.catalog-art__letter {position:absolute;left:20%;top:13%;font:400 160px/1 "Anta",sans-serif;letter-spacing:-.1em;}
+.catalog-art__letter span {color:#d7654c;}
+.catalog-art__quiz {position:absolute;right:17%;top:35%;display:flex;flex-direction:column;gap:13px;}
+.catalog-art__quiz i {display:block;width:88px;height:15px;border:1px solid #7ea78a;}
+.catalog-art__quiz i:nth-child(2){background:#174e35;}
+.catalog-art--agri {background:#174e35;color:#dbeedc;}
+.catalog-art--agri .catalog-art__caption {color:#dbeedc;}
+.catalog-art__growth {position:absolute;inset:35% 12% 23%;display:flex;align-items:end;justify-content:space-between;gap:14px;border-bottom:1px solid #a0c9a9;}
+.catalog-art__growth i {display:block;background:#8ab693;width:16%;height:30%;}
+.catalog-art__growth i:nth-child(2){height:49%;}.catalog-art__growth i:nth-child(3){height:46%;background:#d7654c;}.catalog-art__growth i:nth-child(4){height:72%;}.catalog-art__growth i:nth-child(5){height:96%;}
+
+/* Fiche projet */
+.project-detail {padding-top:clamp(48px,6vw,82px);padding-bottom:clamp(85px,10vw,130px);}
+.detail-hero {display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(25px,5vw,80px);align-items:center;padding:clamp(48px,6vw,85px) 0;}
+.detail-hero__copy h1 {font:400 clamp(52px,7.8vw,108px)/1.04 "Anta",sans-serif;letter-spacing:-.055em;margin:0 0 29px;overflow-wrap:anywhere;}
+.detail-hero__copy h1 span {color:var(--pr-coral);}
+.detail-hero__intro {font:400 clamp(15px,1.7vw,18px)/1.8 "Poppins",sans-serif;color:#536e5b;max-width:600px;}
+.detail-hero__tags {display:flex;flex-wrap:wrap;gap:7px;margin-top:30px;}
+.detail-hero__tags span {border:1px solid #c6d8c8;padding:8px 11px;color:#54715d;font:500 11px "Poppins",sans-serif;}
+.detail-hero__visual .catalog-art {height:375px;}
+.detail-toc {position:sticky;top:80px;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(250,249,245,.95);border-top:1px solid #c7d8c9;border-bottom:1px solid #c7d8c9;padding:18px 12px;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);}
+.detail-toc a {font:500 11px/1.35 "Poppins",sans-serif;color:#617b69;transition:color .2s;}
+.detail-toc a:hover {color:var(--pr-coral);}
+.detail-section {display:grid;grid-template-columns:minmax(180px,.38fr) minmax(0,.62fr);gap:clamp(35px,8vw,120px);padding:clamp(66px,8vw,107px) 0;border-bottom:1px solid #cbd9cc;scroll-margin-top:140px;}
+.detail-section__label {display:flex;align-items:flex-start;gap:15px;}
+.detail-section__label > span {font:500 11px/1.8 "Poppins",sans-serif;color:var(--pr-coral);}
+.detail-section__label h2 {font:400 clamp(29px,3.1vw,47px)/1.16 "Anta",sans-serif;letter-spacing:-.025em;margin:0;}
+.detail-section__body {min-width:0;}
+.detail-section__body > h3 {font:400 25px/1.3 "Anta",sans-serif;margin:0 0 24px;}
+.detail-section__body > p,.detail-section__lead {font:400 14px/1.95 "Poppins",sans-serif;color:#536d5b;margin:0 0 19px;}
+.detail-section__lead {margin-bottom:24px;}
+.detail-access {margin-top:36px;background:#eaf1e8;padding:25px 28px;border-left:3px solid var(--pr-coral);}
+.detail-access > span {font:500 10px "Poppins",sans-serif;color:#809782;letter-spacing:.12em;}
+.detail-access p {font:400 13px/1.8 "Poppins",sans-serif;color:#526e5b;margin:12px 0 0;}
+.detail-resource-links {display:flex;flex-wrap:wrap;gap:11px;margin-top:23px;}
+.detail-resource-links a {background:#174e35;color:white;padding:12px 15px;font:500 12px "Poppins",sans-serif;transition:background .2s;}
+.detail-resource-links a:hover {background:#276a48;}
+.detail-method,.detail-results {list-style:none;padding:0;margin:0;}
+.detail-method li,.detail-results li {display:grid;grid-template-columns:46px minmax(0,1fr);gap:18px;padding:19px 0;border-top:1px solid #d8e4d7;}
+.detail-method li > span,.detail-results li > span {font:400 18px "Anta",sans-serif;color:#d7654c;}
+.detail-method h3 {font:400 19px "Anta",sans-serif;margin:0 0 9px;}
+.detail-method p,.detail-results p {font:400 13px/1.85 "Poppins",sans-serif;color:#5a7360;margin:0;}
+.detail-gallery__placeholder {display:grid;grid-template-columns:1fr 1fr;min-height:300px;background:#f0f5ef;border:1px solid #d9e4d8;}
+.detail-gallery__placeholder .catalog-art {height:100%;min-height:300px;}
+.detail-gallery__message {padding:35px;display:flex;flex-direction:column;justify-content:center;}
+.detail-gallery__message > span {font:500 10px "Poppins",sans-serif;color:#7f9a84;letter-spacing:.13em;}
+.detail-gallery__message h3 {font:400 clamp(24px,2.4vw,33px) "Anta",sans-serif;margin:20px 0;}
+.detail-gallery__message p {font:400 13px/1.85 "Poppins",sans-serif;color:#58705f;}
+.detail-gallery figure {margin:0 0 18px;}
+.detail-gallery figure img {display:block;width:100%;height:auto;}
+.detail-gallery figcaption {font:400 12px "Poppins",sans-serif;color:#6b8570;padding-top:12px;}
+.detail-next {padding:55px 0 0;display:flex;flex-direction:column;align-items:flex-end;gap:15px;}
+.detail-next > span {font:500 11px "Poppins",sans-serif;letter-spacing:.12em;color:#78917e;}
+.detail-next a {font:400 clamp(28px,4vw,57px) "Anta",sans-serif;display:flex;gap:35px;align-items:center;transition:color .25s;}
+.detail-next a:hover {color:var(--pr-coral);}
+.detail-next a span {color:var(--pr-coral);}
+.detail-notfound {padding:120px 0;}
+.detail-notfound h1 {font:400 clamp(40px,6vw,70px) "Anta",sans-serif;margin:20px 0;}
+.detail-notfound p {color:#5d7462;}
+.detail-notfound a {display:inline-block;margin-top:25px;border-bottom:1px solid var(--pr-green);}
+.pages-footer {display:flex;align-items:center;justify-content:space-between;gap:20px;padding:26px max(24px,calc((100vw - 1212px)/2));background:#174e35;color:#c8dfcc;font:400 11px/1.5 "Poppins",sans-serif;}
+.pages-footer a:hover {color:white;}
+@media(max-width:860px) {
+  .projects-page__title,.detail-hero {grid-template-columns:1fr;gap:29px;}
+  .detail-hero__visual .catalog-art {height:300px;}
+  .detail-section {grid-template-columns:1fr;gap:27px;}
+  .detail-gallery__placeholder {grid-template-columns:1fr;}
+  .detail-gallery__placeholder .catalog-art {min-height:250px;}
+}
+@media(max-width:680px) {
+  .pages-header {padding:14px 17px;min-height:66px;}
+  .pages-back {font-size:11px;}
+  .pages-signature {font-size:12px;}
+  .page-shell {padding-left:17px;padding-right:17px;}
+  .projects-page__hero,.project-detail {padding-top:44px;}
+  .projects-page__title h1 {font-size:clamp(45px,12vw,73px);}
+  .projects-all-grid {grid-template-columns:1fr;gap:17px;}
+  .catalog-card__content {padding:22px;}
+  .catalog-art {height:240px;}
+  .catalog-art__big {font-size:80px;}
+  .catalog-art__process span {font-size:10px;padding:12px 7px;}
+  .detail-hero {padding:43px 0 52px;}
+  .detail-hero__copy h1 {font-size:clamp(45px,11vw,80px);}
+  .detail-toc {top:66px;overflow-x:auto;white-space:nowrap;justify-content:flex-start;gap:27px;padding:15px 5px;scrollbar-width:thin;}
+  .detail-toc a {flex:none;}
+  .detail-section {scroll-margin-top:120px;padding:56px 0;}
+  .detail-gallery__message {padding:24px;}
+  .pages-eyebrow > span:nth-child(2) {display:none;}
+  .pages-footer {padding:25px 17px;flex-wrap:wrap;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .catalog-card,.catalog-card__foot strong,.detail-next a {transition:none;}
+}
