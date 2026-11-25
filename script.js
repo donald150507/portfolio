@@ -131,75 +131,60 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // À propos : animations éditoriales GSAP, sans plugins supplémentaires.
-  const aboutSection = document.querySelector('#apropos');
-  if (aboutSection && typeof window.gsap !== 'undefined' && !reduceMotion) {
-    const gsap = window.gsap;
-    const lines = aboutSection.querySelectorAll('.about__line > span');
-    const qualities = aboutSection.querySelectorAll('.about__quality');
-    const interestTags = aboutSection.querySelectorAll('.about__interest-grid span');
-    const journeySteps = aboutSection.querySelectorAll('.about__journey-step');
-    const curve = aboutSection.querySelector('.about__figure-curve');
-
-    function watchOnce(element, reveal, threshold = .15) {
-      if (!element) return;
-      if (!('IntersectionObserver' in window)) { reveal(); return; }
-      const observer = new IntersectionObserver(entries => {
-        if (entries.some(entry => entry.isIntersecting)) {
-          observer.disconnect();
-          reveal();
-        }
-      }, { threshold });
-      observer.observe(element);
-    }
-
-    watchOnce(aboutSection.querySelector('.about__hero'), () => {
-      const intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
-      intro
-        .fromTo(lines, { yPercent: 110, rotate: 2 }, { yPercent: 0, rotate: 0, duration: 1, stagger: .15 })
-        .fromTo('.about__identity', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .75 }, '-=.55')
-        .fromTo('.about__art', { opacity: 0, x: 35, rotate: 2 }, { opacity: 1, x: 0, rotate: 0, duration: .9 }, '-=.8');
-      if (curve && typeof curve.getTotalLength === 'function') {
-        const length = curve.getTotalLength();
-        gsap.fromTo(curve,
-          { strokeDasharray: length, strokeDashoffset: length },
-          { strokeDashoffset: 0, duration: 1.65, ease: 'power2.inOut', delay: .45 });
+  // À propos : titre centré -> à droite au défilement, sticky jusqu'à la fin de la section.
+  const aboutSection = document.getElementById('apropos');
+  if (aboutSection) {
+    const header = aboutSection.querySelector('.about__sticky-header');
+    const title = aboutSection.querySelector('.about__section-title');
+    let ticking = false;
+    const updateAboutTitle = () => {
+      ticking = false;
+      if (!title || !header) return;
+      const rect = aboutSection.getBoundingClientRect();
+      const headRect = header.getBoundingClientRect();
+      const from = window.innerHeight * .64;
+      const to = headRect.height + 108;
+      const progress = Math.max(0, Math.min(1, (from - rect.top) / Math.max(1, from - to)));
+      // Translate from horizontal center to right edge, maintaining a small inset.
+      const maxShift = Math.max(0, (header.clientWidth - title.offsetWidth) / 2 - 18);
+      title.style.transform = 'translate3d(' + (maxShift * progress).toFixed(2) + 'px,0,0)';
+      header.classList.toggle('is-stuck', rect.top < 115 && rect.bottom > headRect.height + 110);
+    };
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(updateAboutTitle);
       }
-    }, .16);
+    }, { passive: true });
+    window.addEventListener('resize', updateAboutTitle, { passive: true });
+    updateAboutTitle();
 
-    watchOnce(aboutSection.querySelector('.about__bottom'), () => {
-      gsap.fromTo(qualities, { x: -25, opacity: 0 },
-        { x: 0, opacity: 1, duration: .65, stagger: .12, ease: 'power2.out' });
-      gsap.fromTo(interestTags, { y: 18, opacity: 0 },
-        { y: 0, opacity: 1, duration: .55, stagger: .065, ease: 'power2.out', delay: .18 });
-    }, .1);
-
-    watchOnce(aboutSection.querySelector('.about__journey'), () => {
-      gsap.fromTo(journeySteps, { y: 32, opacity: 0 },
-        { y: 0, opacity: 1, duration: .8, stagger: .17, ease: 'power3.out' });
-    }, .12);
-
-    // Mouvement très léger de la figure au pointeur, sans faire tourner l'interface.
-    const art = aboutSection.querySelector('.about__art');
-    const artLayers = [
-      { el: aboutSection.querySelector('.about__figure-data'), factor: 11 },
-      { el: aboutSection.querySelector('.about__figure-paper'), factor: -8 },
-      { el: aboutSection.querySelector('.about__figure-spark'), factor: 5 }
-    ].filter(layer => layer.el);
-    if (art && window.matchMedia('(pointer: fine)').matches) {
-      const movers = artLayers.map(layer => ({
-        x: gsap.quickTo(layer.el, 'x', { duration: .7, ease: 'power3.out' }),
-        y: gsap.quickTo(layer.el, 'y', { duration: .7, ease: 'power3.out' }),
-        factor: layer.factor
-      }));
-      art.addEventListener('pointermove', event => {
-        const rect = art.getBoundingClientRect();
-        const dx = (event.clientX - rect.left) / rect.width - .5;
-        const dy = (event.clientY - rect.top) / rect.height - .5;
-        movers.forEach(m => { m.x(dx * m.factor); m.y(dy * m.factor); });
-      }, { passive: true });
-      art.addEventListener('pointerleave', () => {
-        movers.forEach(m => { m.x(0); m.y(0); });
+    // GSAP fait apparaître seulement les contenus de cette section.
+    if (typeof window.gsap !== 'undefined' && !reduceMotion) {
+      const gsap = window.gsap;
+      const watchOnce = (element, callback) => {
+        if (!element) return;
+        if (!('IntersectionObserver' in window)) { callback(); return; }
+        const observer = new IntersectionObserver(entries => {
+          if (entries.some(item => item.isIntersecting)) {
+            observer.disconnect();
+            callback();
+          }
+        }, { threshold: .13 });
+        observer.observe(element);
+      };
+      watchOnce(aboutSection.querySelector('.about__main'), () => {
+        gsap.fromTo('.about__quality',
+          { opacity: 0, x: -25 },
+          { opacity: 1, x: 0, duration: .75, stagger: .14, ease: 'power3.out' });
+        gsap.fromTo('.about__journey-step',
+          { opacity: 0, x: 25 },
+          { opacity: 1, x: 0, duration: .75, stagger: .17, ease: 'power3.out', delay: .13 });
+      });
+      watchOnce(aboutSection.querySelector('.about__interests'), () => {
+        gsap.fromTo('.about__interest-grid span',
+          { opacity: 0, y: 18 },
+          { opacity: 1, y: 0, duration: .58, stagger: .08, ease: 'power2.out' });
       });
     }
   }
