@@ -140,73 +140,87 @@
       </div>
     </section>
 
-    <!-- 04 · À propos : présentation à gauche, parcours académique à droite -->
+    <!-- 04 · À propos : composition éditoriale, illustrations vectorielles natives -->
     <section id="apropos" class="about" aria-labelledby="about-title">
-      <div class="about__container">
-        <div class="about__content">
-          <div class="about__heading">
-            <span class="about__eyebrow">01 / PRÉSENTATION</span>
-            <h2 id="about-title">À propos de moi</h2>
-            <span class="about__heading-line" aria-hidden="true"></span>
-          </div>
+      <div class="about__wrap">
+        <div class="about__masthead">
+          <span class="about__index">01 / À PROPOS</span>
+          <span class="about__edition">IMAGINATION × MÉTHODE</span>
+        </div>
 
-          <div class="about__intro">
-            <p>Étudiant en première année du Magistère Économie, Data Science et Finance à l’AMSE (Aix-Marseille School of Economics), je suis titulaire d’une licence en Statistiques Économiques et Sectorielles. À court terme, je souhaite me spécialiser en data science.</p>
-            <p>Je fais preuve de beaucoup d’imagination et de créativité, ce qui me permet de détecter des besoins, de concevoir des solutions et d’apporter de la valeur ajoutée. Je suis passionné par l’analyse de données, l’automatisation et l’optimisation. J’aime aussi créer des outils numériques.</p>
-            <p>Je m’intéresse également à l’économie, en particulier l’économie du travail, l’impact de l’IA sur le comportement des agents économiques et sur la conceptualisation économique.</p>
-            <p class="about__availability">À la recherche d’un stage de 3 mois en Data Science à compter du 23 mai 2027.</p>
+        <div class="about__hero">
+          <div class="about__statement">
+            <h2 id="about-title" class="about__big-title">
+              <span class="about__line"><span>J'IMAGINE<span class="about__punct">.</span></span></span>
+              <span class="about__line"><span>J'ANALYSE<span class="about__punct">.</span></span></span>
+              <span class="about__line about__line--accent"><span>JE CRÉE<span class="about__punct">.</span></span></span>
+            </h2>
+            <div class="about__identity">
+              <span class="about__identity-line" aria-hidden="true"></span>
+              <p>À la croisée de l’économie, des statistiques et de la technologie, j’aime transformer des idées en solutions utiles. <strong>Créativité, imagination et rigueur</strong> guident ma manière de travailler.</p>
+            </div>
           </div>
-          <div class="about__tags" aria-label="Domaines d'intérêt">
-            <span>Data Science</span><span>Automatisation</span><span>Économie</span>
+          <div class="about__art" aria-hidden="true">
+            <div class="about__art-header"><span>DE L'IDÉE À LA SOLUTION</span><span>FIG. 01</span></div>
+            <svg class="about__figure" viewBox="0 0 510 450" role="presentation">
+              <defs>
+                <pattern id="about-dots" width="25" height="25" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#b5cdb9"/></pattern>
+              </defs>
+              <rect width="510" height="450" fill="url(#about-dots)" opacity=".64"/>
+              <g class="about__figure-rings">
+                <circle cx="259" cy="225" r="153" fill="none" stroke="#b0c8b3" stroke-width="1.4" stroke-dasharray="4 9"/>
+                <circle cx="259" cy="225" r="117" fill="none" stroke="#dae5d9" stroke-width="1.4"/>
+              </g>
+              <path class="about__figure-curve" d="M43 346C135 346 116 128 233 183S373 318 471 85" fill="none" stroke="#d7654c" stroke-width="3" stroke-linecap="round"/>
+              <g class="about__figure-axis">
+                <path d="M76 85V370H451" fill="none" stroke="#174e35" stroke-width="2"/>
+                <path d="M71 95L76 85 81 95M441 365L451 370 441 375" fill="none" stroke="#174e35" stroke-width="2"/>
+              </g>
+              <g class="about__figure-data">
+                <circle cx="116" cy="298" r="9" fill="#174e35"/><circle cx="170" cy="243" r="6" fill="#d7654c"/>
+                <circle cx="231" cy="183" r="12" fill="#174e35"/><circle cx="309" cy="226" r="7" fill="#d7654c"/>
+                <circle cx="383" cy="248" r="9" fill="#174e35"/><circle cx="425" cy="169" r="7" fill="#d7654c"/>
+                <circle cx="116" cy="298" r="18" fill="none" stroke="#174e35" opacity=".28"/>
+                <circle cx="231" cy="183" r="22" fill="none" stroke="#174e35" opacity=".3"/>
+              </g>
+              <g class="about__figure-paper" transform="translate(269 89) rotate(11)">
+                <rect x="0" y="0" width="130" height="83" fill="#e6f0e5" stroke="#174e35" stroke-width="1.3"/>
+                <path d="M15 61L37 42 64 50 82 23 112 34" stroke="#174e35" stroke-width="2.3" fill="none"/>
+                <circle cx="82" cy="23" r="4" fill="#d7654c"/>
+              </g>
+              <g class="about__figure-spark" stroke="#d7654c" stroke-width="3" stroke-linecap="round">
+                <path d="M108 102V134M92 118H124M97 107L119 129M119 107L97 129"/>
+              </g>
+              <text x="101" y="407" fill="#174e35" font-family="monospace" font-size="13" letter-spacing="2">CURIOSITÉ</text>
+              <text x="328" y="407" fill="#174e35" font-family="monospace" font-size="13" letter-spacing="2">PRÉCISION</text>
+            </svg>
+            <div class="about__art-footer"><span>RECHERCHER</span><span>COMPRENDRE</span><span>CONSTRUIRE</span></div>
           </div>
         </div>
 
-        <div class="about__education">
-          <div class="about__education-title">
-            <span class="about__eyebrow">02 / FORMATION</span>
-            <h3>Mon parcours académique</h3>
+        <div class="about__bottom">
+          <div class="about__qualities" aria-label="Mes qualités">
+            <div class="about__minor-heading"><span>01 — MA FAÇON DE PENSER</span></div>
+            <div class="about__quality"><span class="about__quality-no">01</span><strong>CRÉATIVITÉ</strong><svg viewBox="0 0 65 65" aria-hidden="true"><path d="M30 4L36 25 57 31 36 37 30 58 24 37 3 31 24 25Z" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+            <div class="about__quality"><span class="about__quality-no">02</span><strong>IMAGINATION</strong><svg viewBox="0 0 65 65" aria-hidden="true"><path d="M8 51C8 14 54 9 54 32S19 47 26 20" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="54" cy="32" r="5" fill="currentColor"/></svg></div>
+            <div class="about__quality"><span class="about__quality-no">03</span><strong>RIGUEUR</strong><svg viewBox="0 0 65 65" aria-hidden="true"><circle cx="32" cy="32" r="23" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="32" cy="32" r="12" fill="none" stroke="currentColor" stroke-width="2"/><path d="M32 6V58M6 32H58" stroke="currentColor" stroke-width="1.5"/></svg></div>
           </div>
 
-          <div class="academic-route">
-            <!-- Un chemin SVG ondulé, tracé au scroll par GSAP. -->
-            <svg class="academic-route__svg" viewBox="0 0 110 535" preserveAspectRatio="none" aria-hidden="true">
-              <defs>
-                <mask id="academic-route-reveal" maskUnits="userSpaceOnUse">
-                  <path class="academic-route__reveal-line" d="M50 13 C105 76 7 122 49 185 S100 284 52 354 S14 447 50 515" stroke="white" stroke-width="8" stroke-linecap="round" fill="none"></path>
-                </mask>
-              </defs>
-              <path class="academic-route__path-base" d="M50 13 C105 76 7 122 49 185 S100 284 52 354 S14 447 50 515"></path>
-              <path class="academic-route__path-draw" mask="url(#academic-route-reveal)" d="M50 13 C105 76 7 122 49 185 S100 284 52 354 S14 447 50 515"></path>
-            </svg>
-            <div class="academic-route__steps">
-              <article class="academic-step">
-                <span class="academic-step__marker" aria-hidden="true"></span>
-                <div class="academic-step__logo academic-step__logo--amse" aria-label="Emplacement du logo AMSE"><span>AMSE</span></div>
-                <div class="academic-step__body">
-                  <span class="academic-step__year">2026–2027 · En cours</span>
-                  <h4>Aix-Marseille School of Economics</h4>
-                  <p>Magistère Économie, Data Science et Finance</p>
-                </div>
-              </article>
-              <article class="academic-step">
-                <span class="academic-step__marker" aria-hidden="true"></span>
-                <div class="academic-step__logo academic-step__logo--eneam" aria-label="Emplacement du logo ENEAM"><span>ENEAM</span></div>
-                <div class="academic-step__body">
-                  <span class="academic-step__year">2023–2025</span>
-                  <h4>École Nationale d’Économie Appliquée et de Management</h4>
-                  <p>Licence en Statistiques Économiques et Sectorielles</p>
-                </div>
-              </article>
-              <article class="academic-step">
-                <span class="academic-step__marker" aria-hidden="true"></span>
-                <div class="academic-step__logo academic-step__logo--college" aria-label="Emplacement du logo du collège"><span>NDL</span></div>
-                <div class="academic-step__body">
-                  <span class="academic-step__year">2022</span>
-                  <h4>Collège Catholique Notre Dame de Lourdes</h4>
-                  <p>Baccalauréat série D</p>
-                </div>
-              </article>
+          <div class="about__interests">
+            <div class="about__minor-heading"><span>02 — CE QUI M'ANIME</span></div>
+            <div class="about__interest-grid">
+              <span>DATA SCIENCE</span><span>ÉCONOMIE</span><span>INTELLIGENCE ARTIFICIELLE</span><span>AUTOMATISATION</span><span>OUTILS NUMÉRIQUES</span><span>INNOVATION</span>
             </div>
+            <p class="about__interest-note">Comprendre les mécanismes. Explorer les possibilités. Concevoir des outils.</p>
+          </div>
+        </div>
+
+        <div class="about__journey">
+          <div class="about__minor-heading"><span>03 — MON PARCOURS</span><span>DU BÉNIN À AIX-EN-PROVENCE</span></div>
+          <div class="about__journey-steps">
+            <div class="about__journey-step"><span class="about__journey-year">2022</span><span class="about__journey-symbol">D</span><div><strong>BAC SÉRIE D</strong><small>Collège Catholique Notre Dame de Lourdes</small></div></div>
+            <div class="about__journey-step"><span class="about__journey-year">2023–2025</span><span class="about__journey-symbol">E</span><div><strong>LICENCE EN STATISTIQUES</strong><small>ENEAM · Statistiques Économiques et Sectorielles</small></div></div>
+            <div class="about__journey-step"><span class="about__journey-year">2026–2027</span><span class="about__journey-symbol">A</span><div><strong>MAGISTÈRE ÉCO / DATA / FINANCE</strong><small>AMSE · En cours</small></div></div>
           </div>
         </div>
       </div>
