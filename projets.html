@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#faf9f5">
+  <meta name="description" content="Tous les projets de ZINSOU Donald Dègnon : produits numériques, data science, analyses et automatisation.">
+  <title>Tous mes projets | ZINSOU Donald Dègnon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anta&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="projects-pages.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <script defer src="projects-data.js"></script>
+  <script defer src="projects-pages.js"></script>
+</head>
+<body class="projects-page" data-page="listing">
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <header class="pages-header">
+    <a class="pages-back" href="index.html#portfolio"><span aria-hidden="true">←</span> Retour au portfolio</a>
+    <a class="pages-signature" href="index.html#accueil">ZINSOU Donald Dègnon<span>.</span></a>
+  </header>
+  <main id="contenu">
+    <div class="projects-page__hero page-shell">
+      <div class="pages-eyebrow"><span>INDEX / PROJETS</span><span>RECHERCHE · DIGITAL · AUTOMATISATION</span></div>
+      <div class="projects-page__title">
+        <div><p class="section-kicker">MON TRAVAIL, MES EXPÉRIMENTATIONS</p><h1>Tous mes<br><em>projets.</em></h1></div>
+        <p>Chaque projet répond à un besoin différent. Explore la sélection ou utilise les filtres pour retrouver une réalisation précise.</p>
+      </div>
+      <div class="projects-controls">
+        <div class="project-filters" role="group" aria-label="Filtrer les projets">
+          <button class="project-filter is-active" data-filter="all" aria-pressed="true" type="button">Tous <span id="projects-total">05</span></button>
+          <button class="project-filter" data-filter="digital" aria-pressed="false" type="button">Produits numériques</button>
+          <button class="project-filter" data-filter="data" aria-pressed="false" type="button">Data & recherche</button>
+        </div>
+        <p id="projects-count" class="projects-count" aria-live="polite">5 projets</p>
+      </div>
+    </div>
+    <section class="page-shell projects-page__list" aria-label="Liste des projets">
+      <div class="projects-all-grid" id="projects-all-grid">
+        <p>Chargement des projets…</p>
+      </div>
+    </section>
+  </main>
+  <footer class="pages-footer"><span>© Portfolio · ZINSOU Donald Dègnon</span><a href="index.html#accueil">Accueil ↑</a></footer>
+</body>
+</html>
