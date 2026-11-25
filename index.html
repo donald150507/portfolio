@@ -179,21 +179,16 @@
       </div>
     </section>
 
-    <!-- 05 · PORTFOLIO -->
+    <!-- 05 · PORTFOLIO : trois projets à la une, autres projets sur page dédiée -->
     <section id="portfolio" class="showcase portfolio-section" aria-labelledby="portfolio-title">
       <div class="section-shell">
-        <div class="section-overline"><span>02 / SÉLECTION DE TRAVAUX</span><span>CONCEVOIR · ANALYSER · AUTOMATISER</span></div>
+        <div class="section-overline"><span>02 / PROJETS À LA UNE</span><span>CONCEVOIR · ANALYSER · AUTOMATISER</span></div>
         <div class="section-heading">
           <div><p class="section-kicker">DU PROBLÈME À LA SOLUTION</p><h2 id="portfolio-title">Mes <em>projets.</em></h2></div>
-          <p>Des produits numériques, des analyses de données et des outils conçus pour répondre à des besoins concrets.</p>
+          <p>Trois projets sélectionnés. Chaque réalisation dispose d'une fiche présentant le contexte, la démarche et les résultats.</p>
         </div>
-        <div class="project-filters" role="group" aria-label="Filtrer les projets">
-          <button class="project-filter is-active" type="button" data-filter="all" aria-pressed="true">Tous les projets <span>05</span></button>
-          <button class="project-filter" type="button" data-filter="digital" aria-pressed="false">Produits numériques</button>
-          <button class="project-filter" type="button" data-filter="data" aria-pressed="false">Data & recherche</button>
-        </div>
-        <div class="project-grid">
-          <article class="project-card project-card--featured" data-category="digital">
+        <div class="project-grid project-grid--preview">
+<article class="project-card" data-category="digital">
             <div class="project-visual project-visual--share" aria-label="Illustration schématique de l'interface ShareScreen">
               <div class="mock-window">
                 <div class="mock-window__top"><span class="mock-dots"><i></i><i></i><i></i></span><span>SHARESCREEN / SALON</span><span class="mock-live">● SESSION</span></div>
@@ -209,14 +204,12 @@
               <h3>ShareScreen<span>.</span></h3>
               <p>Une application de partage d'écran pensée pour les formations, les ateliers et les travaux pratiques : salons, demandes d'affichage, gestion des invités et export des présences.</p>
               <div class="project-tech"><span>JavaScript</span><span>WebRTC</span><span>Cloudflare Workers</span><span>WebSockets</span></div>
-              <div class="project-actions">
-                <a href="https://sharescreen.donaldzinsoud.workers.dev" target="_blank" rel="noopener noreferrer">Voir l'application <span aria-hidden="true">↗</span></a>
-                <a href="https://github.com/donald150507/sharescreen" target="_blank" rel="noopener noreferrer">Code GitHub <span aria-hidden="true">↗</span></a>
-              </div>
+              
+            <a class="project-card__full-link" href="projet.html?id=sharescreen" aria-label="Consulter le projet ShareScreen"><span>Découvrir le projet</span><span aria-hidden="true">↗</span></a>
             </div>
           </article>
 
-          <article class="project-card" data-category="data">
+<article class="project-card" data-category="data">
             <div class="project-visual project-visual--research" aria-hidden="true">
               <span class="visual-corner">RECHERCHE / STATISTIQUES</span>
               <div class="research-graphic"><div class="research-percent">11,5<span>%</span></div><svg viewBox="0 0 330 150"><path d="M10 126Q75 125 105 89T175 87 248 28 320 40" stroke="#174e35" stroke-width="3" fill="none"/><path d="M10 126Q75 125 105 89T175 87 248 28 320 40V145H10Z" fill="#b9dec0" opacity=".45"/><circle cx="248" cy="28" r="7" fill="#d7654c"/></svg><span>TAUX D'ABANDON DANS L'ÉCHANTILLON</span></div>
@@ -227,40 +220,22 @@
               <p>Étude des déterminants de l'abandon scolaire au premier cycle du secondaire au Bénin, à partir des données MICS 2021–2022.</p>
               <div class="project-tech"><span>Régression logistique</span><span>ACM</span><span>Enquêtes</span></div>
               <p class="project-card__note">Travail d'analyse · 2 114 observations étudiées</p>
+            <a class="project-card__full-link" href="projet.html?id=decrochage-scolaire" aria-label="Consulter le projet Décrochage scolaire"><span>Découvrir le projet</span><span aria-hidden="true">↗</span></a>
             </div>
           </article>
 
-          <article class="project-card" data-category="digital">
-            <div class="project-visual project-visual--revixo" aria-hidden="true"><span class="visual-corner">EDTECH / CONCEPT PRODUIT</span><div class="revixo-visual"><div class="revixo-visual__mark">R<span>.</span></div><div class="revixo-visual__answer"><span></span><span class="is-filled"></span><span></span></div><div class="revixo-visual__score">QUIZ<br/><strong>10/10</strong></div></div></div>
-            <div class="project-card__info">
-              <div class="project-meta"><span>03 / CONCEPTION</span><span>En développement conceptuel</span></div>
-              <h3>Revixo<span>.</span></h3>
-              <p>Concept de plateforme d'apprentissage : quiz, corrections expliquées, challenges hebdomadaires et tableaux de progression.</p>
-              <div class="project-tech"><span>EdTech</span><span>UX</span><span>Apprentissage</span></div>
-              <p class="project-card__note">Concept produit — pas encore présenté comme une application publiée</p>
-            </div>
-          </article>
-
-          <article class="project-card" data-category="data">
+<article class="project-card" data-category="data">
             <div class="project-visual project-visual--automation" aria-hidden="true"><span class="visual-corner">DATA / AUTOMATISATION</span><div class="automation-grid"><div class="automation-stat"><span>01</span><strong>EXTRAIRE</strong></div><div class="automation-connector"></div><div class="automation-stat"><span>02</span><strong>TRAITER</strong></div><div class="automation-connector"></div><div class="automation-stat"><span>03</span><strong>VISUALISER</strong></div></div></div>
             <div class="project-card__info">
               <div class="project-meta"><span>04 / REPORTING</span><span>Excel & automatisation</span></div>
               <h3>Reporting automatisé<span>.</span></h3>
               <p>Conception de traitements et d'indicateurs pour des rapports d'activité, le suivi de transactions et l'aide à la décision.</p>
               <div class="project-tech"><span>Excel/VBA</span><span>Power Query</span><span>Tableaux de bord</span></div>
-            </div>
-          </article>
-
-          <article class="project-card project-card--wide" data-category="digital">
-            <div class="project-visual project-visual--agri" aria-hidden="true"><span class="visual-corner">AGRITECH / CONCEPTION</span><div class="agri-graphic"><svg viewBox="0 0 360 170"><path d="M12 136H348" stroke="#315f3e" stroke-opacity=".35"/><path d="M21 113L78 104 134 114 184 70 239 81 295 39 340 27" stroke="#e0f4c6" stroke-width="5" fill="none"/><circle cx="184" cy="70" r="7" fill="#e8a887"/><circle cx="340" cy="27" r="7" fill="#e8a887"/></svg><span>PRODUCTION · STOCKS · SUIVI DES LOTS</span></div></div>
-            <div class="project-card__info">
-              <div class="project-meta"><span>05 / CONCEPTION MÉTIER</span><span>Projet en cours de définition</span></div>
-              <h3>Gestion avicole<span>.</span></h3>
-              <p>Architecture fonctionnelle d'une solution de gestion avicole multi-sites : zones, production, alimentation, stocks, ventes et traçabilité.</p>
-              <div class="project-tech"><span>Modélisation métier</span><span>Gestion des stocks</span><span>AgriTech</span></div>
+            <a class="project-card__full-link" href="projet.html?id=reporting-automatise" aria-label="Consulter le projet Reporting automatisé"><span>Découvrir le projet</span><span aria-hidden="true">↗</span></a>
             </div>
           </article>
         </div>
+        <div class="portfolio-section__more"><a class="portfolio-see-all" href="projets.html">Voir tous mes projets <span aria-hidden="true">↗</span></a></div>
       </div>
     </section>
 
