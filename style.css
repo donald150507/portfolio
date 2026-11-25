@@ -589,201 +589,189 @@ a:focus-visible, button:focus-visible { outline: 3px solid #348b55; outline-offs
 }
 
 
-/* À PROPOS · présentation + chemin académique (sans altérer l'accueil) */
+
+/* À PROPOS — identité éditoriale, ivoire / vert profond / corail. */
 .about {
-  background: #fff;
-  padding: clamp(72px, 8vw, 112px) 24px;
-  color: #29352e;
+  --about-green: #174e35;
+  --about-coral: #d7654c;
+  background: #faf9f5;
+  color: var(--about-green);
+  padding: clamp(60px, 7vw, 104px) 24px clamp(70px, 8vw, 118px);
+  border-top: 1px solid #e0e8db;
+  overflow: hidden;
 }
-.about__container {
-  width: min(100%, 1210px);
-  margin: 0 auto;
+.about__wrap { max-width: 1280px; margin: 0 auto; }
+.about__masthead, .about__minor-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  text-transform: uppercase;
+  font: 500 11px/1.5 "Poppins",sans-serif;
+  letter-spacing: .14em;
+}
+.about__masthead {
+  padding: 0 0 17px;
+  border-bottom: 1px solid rgba(23,78,53,.3);
+}
+.about__edition { color: #8a9b8e; }
+.about__hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.04fr) minmax(0, .96fr);
-  gap: clamp(42px, 6vw, 102px);
-  align-items: start;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr);
+  gap: clamp(20px, 4vw, 66px);
+  align-items: center;
+  padding: clamp(50px, 6vw, 85px) 0 clamp(45px, 6vw, 82px);
 }
-.about__content { min-width: 0; }
-.about__heading { text-align: left; }
-.about__eyebrow {
-  display: block;
-  font: 600 11px/1.5 "Poppins",sans-serif;
-  letter-spacing: .21em;
-  color: #6f8e77;
-  margin-bottom: 15px;
-}
-.about h2, .about__education h3 {
-  font-family: "Anta", sans-serif;
+.about__statement { min-width: 0; }
+.about__big-title {
+  font-family: "Anta",sans-serif;
+  font-size: clamp(43px, 5.6vw, 89px);
   font-weight: 400;
-  color: #004d00;
-  letter-spacing: .01em;
-  line-height: 1.2;
-}
-.about h2 {
-  font-size: clamp(32px, 3.3vw, 48px);
+  line-height: 1.1;
+  letter-spacing: -.055em;
   margin: 0;
 }
-.about__heading-line {
-  display: block;
-  width: 64px;
-  height: 2px;
-  margin: 21px 0 0;
-  background: #004d00;
+.about__line { display: block; overflow: hidden; padding: .035em 0; }
+.about__line > span { display: inline-block; }
+.about__line--accent { color: var(--about-coral); }
+.about__punct { color: var(--about-coral); }
+.about__identity {
+  display: grid;
+  grid-template-columns: 3px minmax(0,1fr);
+  align-items: stretch;
+  gap: 21px;
+  max-width: 570px;
+  margin-top: clamp(30px, 4vw, 57px);
 }
-.about__intro { margin: 35px 0 0; }
-.about__intro p {
-  font-family: "Poppins",sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 1.95;
-  color: #3a4440;
-  margin: 0 0 19px;
+.about__identity-line { background: var(--about-coral); }
+.about__identity p {
+  margin: 0;
+  font: 400 15px/1.9 "Poppins",sans-serif;
+  color: #465e4d;
 }
-.about__intro .about__availability {
-  color: #b8323d;
-  font-weight: 500;
-  margin-top: 27px;
-  margin-bottom: 0;
+.about__identity strong { color: var(--about-green); font-weight: 600; }
+.about__art {
+  position: relative;
+  border: 1px solid #c8d8c8;
+  background: #f2f5ed;
+  min-width: 0;
+  padding: 18px 21px 14px;
+  box-shadow: 14px 14px 0 #e2ebdf;
 }
-.about__tags {
+.about__art-header,.about__art-footer {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
   gap: 10px;
-  margin-top: 27px;
+  color: #6b8d78;
+  font: 500 10px/1.4 "Poppins",sans-serif;
+  letter-spacing: .12em;
 }
-.about__tags span {
+.about__figure { display: block; width: 100%; height: auto; }
+.about__figure-data,.about__figure-paper,.about__figure-spark,.about__figure-rings {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.about__bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(36px, 6vw, 100px);
+  padding-top: 34px;
+  border-top: 1px solid rgba(23,78,53,.22);
+}
+.about__minor-heading {
+  color: #708a76;
+  margin-bottom: 26px;
+  font-size: 10px;
+}
+.about__quality {
+  display: grid;
+  grid-template-columns: 38px minmax(0,1fr) 62px;
+  gap: 10px;
+  align-items: center;
+  min-height: 94px;
+  border-bottom: 1px solid #d5e0d3;
+  color: var(--about-green);
+  transition: padding-left .3s ease, color .3s ease;
+}
+.about__quality:hover { padding-left: 9px; color: var(--about-coral); }
+.about__quality-no { font: 500 11px "Poppins",sans-serif; color: #8da292; }
+.about__quality strong {
+  font: 400 clamp(25px, 3vw, 43px)/1.2 "Anta",sans-serif;
+  letter-spacing: -.025em;
+}
+.about__quality svg { width: 56px; height: 56px; }
+.about__interest-grid { display: flex; flex-wrap: wrap; gap: 10px; align-content: start; }
+.about__interest-grid span {
   display: inline-flex;
   align-items: center;
-  min-height: 34px;
-  padding: 7px 12px;
-  background: #f1f7f1;
-  border: 1px solid #d4e6d6;
-  color: #2d633d;
-  font: 500 12px/1.3 "Poppins",sans-serif;
+  border: 1px solid #b9cdbd;
+  padding: 13px 16px;
+  color: var(--about-green);
+  background: transparent;
+  font: 400 13px/1.3 "Anta",sans-serif;
+  letter-spacing: .025em;
+  transition: background .25s, color .25s, border-color .25s, transform .25s;
 }
-.about__education { min-width: 0; }
-.about__education-title { padding: 0 0 10px 38px; }
-.about__education h3 {
-  font-size: clamp(25px, 2.5vw, 33px);
-  margin: 0;
+.about__interest-grid span:hover {
+  background: var(--about-green);
+  border-color: var(--about-green);
+  color: #fff;
+  transform: translateY(-3px);
 }
-.academic-route { position: relative; margin-top: 14px; min-height: 550px; }
-.academic-route__svg {
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 110px;
-  height: 535px;
-  overflow: visible;
-  pointer-events: none;
+.about__interest-note { color: #637968; font: 400 13px/1.8 "Poppins",sans-serif; margin: 27px 0 0; max-width: 420px; }
+.about__journey { padding-top: clamp(68px, 7vw, 104px); }
+.about__journey > .about__minor-heading {
+  border-bottom: 1px solid rgba(23,78,53,.22);
+  padding-bottom: 16px;
+  margin-bottom: 0;
 }
-.academic-route__path-base,.academic-route__path-draw {
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2;
-  stroke-dasharray: 3 9;
-}
-.academic-route__path-base { stroke: #d6e6d9; }
-.academic-route__path-draw { stroke: #4b9561; }
-.academic-route__steps {
-  position: relative;
+.about__journey-steps { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); }
+.about__journey-step {
   display: grid;
-  grid-template-rows: repeat(3, 166px);
-  row-gap: 11px;
-  padding: 24px 0 0 83px;
-}
-.academic-step {
+  grid-template-columns: 48px minmax(0,1fr);
+  grid-template-rows: auto auto;
+  column-gap: 19px;
+  align-content: start;
+  padding: 28px 22px 25px 0;
+  border-top: 3px solid var(--about-green);
   position: relative;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 18px;
-  background: rgba(247, 251, 247, .96);
-  border: 1px solid #deeadf;
-  box-shadow: 0 8px 24px rgba(18, 85, 34, .045);
-  min-width: 0;
-  transition: border-color .25s ease, box-shadow .25s ease;
 }
-.academic-step:hover {
-  border-color: #91be9b;
-  box-shadow: 0 13px 28px rgba(18, 85, 34, .085);
+.about__journey-step:not(:last-child) { border-right: 1px solid #dce5da; margin-right: 20px; }
+.about__journey-year { grid-column: 1/-1; font: 500 11px/1.4 "Poppins",sans-serif; color: #768d7b; margin-bottom: 17px; }
+.about__journey-symbol {
+  width: 48px; height: 48px; display: grid; place-items: center;
+  background: #e0eadc; color: var(--about-green);
+  font: 400 25px "Anta",sans-serif;
 }
-.academic-step__marker {
-  position: absolute;
-  top: 50%;
-  left: -47px;
-  width: 12px;
-  height: 12px;
-  border: 3px solid #397e4b;
-  background: #fff;
-  border-radius: 50%;
-  transform: translateY(-50%);
-  box-shadow: 0 0 0 5px #f2f8f3;
+.about__journey-step:last-child .about__journey-symbol { background: #f9ded4; color: #a74d36; }
+.about__journey-step strong { display: block; font: 400 17px/1.3 "Anta",sans-serif; margin: 0 0 8px; }
+.about__journey-step small { font: 400 12px/1.7 "Poppins",sans-serif; color: #65796a; }
+@media (max-width: 1000px) {
+  .about__hero { grid-template-columns: 1.02fr .98fr; gap: 24px; }
+  .about__big-title { font-size: clamp(39px, 5.1vw, 62px); }
+  .about__bottom { gap: 35px; }
 }
-.academic-step__logo {
-  width: 66px;
-  height: 66px;
-  flex: 0 0 66px;
-  display: grid;
-  place-items: center;
-  background: #e5f1e6;
-  color: #115326;
-  border: 1px solid #cbded0;
-  font: 400 16px/1 "Anta",sans-serif;
-  letter-spacing: -.02em;
+@media (max-width: 760px) {
+  .about { padding: 62px 18px 82px; }
+  .about__hero { grid-template-columns: 1fr; padding: 43px 0 58px; gap: 44px; }
+  .about__big-title { font-size: clamp(38px, 9.1vw, 72px); }
+  .about__identity { margin-top: 30px; }
+  .about__identity p { font-size: 14px; line-height: 1.8; }
+  .about__art { width: min(100% - 14px, 520px); margin-left: 0; }
+  .about__bottom { grid-template-columns: 1fr; gap: 55px; }
+  .about__journey-steps { grid-template-columns: 1fr; }
+  .about__journey-step { border-right: none !important; margin-right: 0 !important; padding: 21px 0; }
+  .about__journey-step:not(:last-child) { border-bottom: 1px solid #dce5da; }
 }
-.academic-step__logo--eneam { background: #edf5e9; }
-.academic-step__logo--college { background: #ecefeb; color: #4f6454; }
-.academic-step__body { min-width: 0; }
-.academic-step__year {
-  font: 400 12px/1.5 "Anta",sans-serif;
-  color: #488456;
-  display: block;
-  margin-bottom: 7px;
-}
-.academic-step h4 {
-  font: 600 13px/1.45 "Poppins",sans-serif;
-  color: #194327;
-  margin: 0 0 6px;
-}
-.academic-step p {
-  font: 400 12px/1.55 "Poppins",sans-serif;
-  color: #536457;
-  margin: 0;
-}
-@media (max-width: 1100px) {
-  .about__container { gap: 34px; }
-  .academic-route__steps { padding-left: 69px; }
-  .academic-route__svg { width: 94px; }
-  .academic-step__marker { left: -42px; }
-  .academic-step { padding: 13px; gap: 11px; }
-  .academic-step__logo { width: 53px; height: 53px; flex-basis: 53px; font-size: 13px; }
-}
-@media (max-width: 820px) {
-  .about { padding: 70px 20px 84px; }
-  .about__container { grid-template-columns: 1fr; gap: 62px; }
-  .about__content { max-width: 680px; }
-  .about__education { max-width: 650px; width: 100%; }
-  .about__education-title { padding-left: 0; }
-  .academic-route__steps { padding-left: 83px; }
-  .academic-route__svg { width: 110px; }
-  .academic-step__marker { left: -47px; }
-  .academic-step__logo { width: 64px; height: 64px; flex-basis: 64px; font-size: 16px; }
-  .academic-step { padding: 16px; gap: 14px; }
-}
-@media (max-width: 430px) {
-  .about { padding-inline: 16px; }
-  .about__intro p { font-size: 14px; line-height: 1.8; }
-  .academic-route { min-height: 565px; }
-  .academic-route__steps { padding-left: 52px; grid-template-rows: repeat(3, 177px); row-gap: 7px; }
-  .academic-route__svg { width: 75px; height: 550px; }
-  .academic-step__marker { left: -31px; }
-  .academic-step { gap: 10px; padding: 11px; }
-  .academic-step__logo { width: 44px; height: 44px; flex-basis: 44px; font-size: 11px; }
-  .academic-step h4 { font-size: 12px; }
-  .academic-step p { font-size: 11px; }
-  .academic-step__year { font-size: 11px; }
+@media (max-width: 440px) {
+  .about__edition { font-size: 9px; }
+  .about__big-title { font-size: clamp(34px, 9.1vw, 43px); }
+  .about__art { padding: 10px; }
+  .about__quality { min-height: 78px; grid-template-columns: 25px minmax(0,1fr) 50px; }
+  .about__quality svg { width: 45px; height: 45px; }
+  .about__quality strong { font-size: 26px; }
+  .about__interest-grid span { font-size: 12px; padding: 10px 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .academic-step { transition: none; }
+  .about__quality,.about__interest-grid span { transition: none; }
 }
