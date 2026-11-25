@@ -131,43 +131,77 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // À propos : dessin progressif du chemin et révélation des étapes au scroll.
-  // IntersectionObserver évite une dépendance supplémentaire à ScrollTrigger.
+  // À propos : animations éditoriales GSAP, sans plugins supplémentaires.
   const aboutSection = document.querySelector('#apropos');
   if (aboutSection && typeof window.gsap !== 'undefined' && !reduceMotion) {
     const gsap = window.gsap;
-    const path = aboutSection.querySelector('.academic-route__reveal-line');
-    const steps = Array.from(aboutSection.querySelectorAll('.academic-step'));
-    const pathLength = path?.getTotalLength() || 0;
-    if (path && pathLength) {
-      // La base pointillée reste visible. Un masque révèle les pointillés verts.
-      gsap.set(path, { strokeDasharray: pathLength, strokeDashoffset: pathLength });
-      const reveal = () => {
-        const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
-        tl.fromTo('.about__heading, .about__intro, .about__tags',
-          { autoAlpha: 0, y: 20 },
-          { autoAlpha: 1, y: 0, duration: .7, stagger: .13 })
-          .fromTo('.about__education-title',
-            { autoAlpha: 0, y: 18 },
-            { autoAlpha: 1, y: 0, duration: .65 }, '-=.45')
-          .fromTo(path,
-            { strokeDashoffset: pathLength },
-            { strokeDashoffset: 0, duration: 2.1, ease: 'none' }, '-=.12')
-          .fromTo(steps,
-            { autoAlpha: 0, x: 24 },
-            { autoAlpha: 1, x: 0, duration: .65, stagger: .36 }, '-=1.95');
-      };
-      if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries) => {
-          if (entries.some(entry => entry.isIntersecting)) {
-            observer.disconnect();
-            reveal();
-          }
-        }, { threshold: .12 });
-        observer.observe(aboutSection);
-      } else {
-        reveal();
+    const lines = aboutSection.querySelectorAll('.about__line > span');
+    const qualities = aboutSection.querySelectorAll('.about__quality');
+    const interestTags = aboutSection.querySelectorAll('.about__interest-grid span');
+    const journeySteps = aboutSection.querySelectorAll('.about__journey-step');
+    const curve = aboutSection.querySelector('.about__figure-curve');
+
+    function watchOnce(element, reveal, threshold = .15) {
+      if (!element) return;
+      if (!('IntersectionObserver' in window)) { reveal(); return; }
+      const observer = new IntersectionObserver(entries => {
+        if (entries.some(entry => entry.isIntersecting)) {
+          observer.disconnect();
+          reveal();
+        }
+      }, { threshold });
+      observer.observe(element);
+    }
+
+    watchOnce(aboutSection.querySelector('.about__hero'), () => {
+      const intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      intro
+        .fromTo(lines, { yPercent: 110, rotate: 2 }, { yPercent: 0, rotate: 0, duration: 1, stagger: .15 })
+        .fromTo('.about__identity', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .75 }, '-=.55')
+        .fromTo('.about__art', { opacity: 0, x: 35, rotate: 2 }, { opacity: 1, x: 0, rotate: 0, duration: .9 }, '-=.8');
+      if (curve && typeof curve.getTotalLength === 'function') {
+        const length = curve.getTotalLength();
+        gsap.fromTo(curve,
+          { strokeDasharray: length, strokeDashoffset: length },
+          { strokeDashoffset: 0, duration: 1.65, ease: 'power2.inOut', delay: .45 });
       }
+    }, .16);
+
+    watchOnce(aboutSection.querySelector('.about__bottom'), () => {
+      gsap.fromTo(qualities, { x: -25, opacity: 0 },
+        { x: 0, opacity: 1, duration: .65, stagger: .12, ease: 'power2.out' });
+      gsap.fromTo(interestTags, { y: 18, opacity: 0 },
+        { y: 0, opacity: 1, duration: .55, stagger: .065, ease: 'power2.out', delay: .18 });
+    }, .1);
+
+    watchOnce(aboutSection.querySelector('.about__journey'), () => {
+      gsap.fromTo(journeySteps, { y: 32, opacity: 0 },
+        { y: 0, opacity: 1, duration: .8, stagger: .17, ease: 'power3.out' });
+    }, .12);
+
+    // Mouvement très léger de la figure au pointeur, sans faire tourner l'interface.
+    const art = aboutSection.querySelector('.about__art');
+    const artLayers = [
+      { el: aboutSection.querySelector('.about__figure-data'), factor: 11 },
+      { el: aboutSection.querySelector('.about__figure-paper'), factor: -8 },
+      { el: aboutSection.querySelector('.about__figure-spark'), factor: 5 }
+    ].filter(layer => layer.el);
+    if (art && window.matchMedia('(pointer: fine)').matches) {
+      const movers = artLayers.map(layer => ({
+        x: gsap.quickTo(layer.el, 'x', { duration: .7, ease: 'power3.out' }),
+        y: gsap.quickTo(layer.el, 'y', { duration: .7, ease: 'power3.out' }),
+        factor: layer.factor
+      }));
+      art.addEventListener('pointermove', event => {
+        const rect = art.getBoundingClientRect();
+        const dx = (event.clientX - rect.left) / rect.width - .5;
+        const dy = (event.clientY - rect.top) / rect.height - .5;
+        movers.forEach(m => { m.x(dx * m.factor); m.y(dy * m.factor); });
+      }, { passive: true });
+      art.addEventListener('pointerleave', () => {
+        movers.forEach(m => { m.x(0); m.y(0); });
+      });
     }
   }
+
 });
